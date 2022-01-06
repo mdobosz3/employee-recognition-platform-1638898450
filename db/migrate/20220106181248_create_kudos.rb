@@ -1,8 +1,8 @@
 class CreateKudos < ActiveRecord::Migration[6.1]
   def change
     create_table :kudos do |t|
-      t.string :title, null: false
-      t.text :content, null: false
+      t.string :title
+      t.text :content
       t.references :giver, null: false, index: true, foreign_key: { to_table: :employees }
       t.references :receiver, null: false, index: true, foreign_key: { to_table: :employees }
 
