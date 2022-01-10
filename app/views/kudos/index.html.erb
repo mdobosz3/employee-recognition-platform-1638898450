@@ -8,7 +8,6 @@
       <th>Receiver</th>
     </tr>
   </thead>
-
   <tbody>
     <% kudos.each do |kudo| %>
       <tr>
@@ -16,11 +15,9 @@
         <td><%= kudo.content %></td>
         <td><%= kudo.giver.email %></td>
         <td><%= kudo.receiver.email %></td>
-
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 <%= link_to 'New Kudos', new_kudo_path, class:"btn btn-secondary" %>
