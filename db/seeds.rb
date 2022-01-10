@@ -12,6 +12,5 @@ employee_4 = Employee.create(email: "czworka@gmail.com", password: "444444")
 employee_5 = Employee.create(email: "piatka@gmail.com", password: "555555")
 
 1.upto(4) do |i|
-x = i + 1
-  kudo = Kudo.create(title: Faker::Beer.style, content: Faker::Coffee.notes, giver_id: "#{i}", receiver_id: "#{x}")
+  kudo = Kudo.create(title: Faker::Beer.style, content: Faker::Coffee.notes, giver_id: "#{i}", receiver_id: "#{i+1}")
 end
