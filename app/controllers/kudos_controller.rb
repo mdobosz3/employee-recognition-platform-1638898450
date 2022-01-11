@@ -14,7 +14,7 @@ class KudosController < ApplicationController
   def new
     render :new, locals: { kudo: Kudo.new }
   end
-  
+
   def edit
     render :edit, locals: { kudo: kudo }
   end
@@ -43,10 +43,6 @@ class KudosController < ApplicationController
   end
 
   private
-
-  def set_kudo
-    kudo = Kudo.find(params[:id])
-  end
 
   def kudo_params
     params.require(:kudo).permit(:title, :content, :receiver_id)
