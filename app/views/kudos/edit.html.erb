@@ -1,0 +1,6 @@
+<h1>Edit Kudo</h1>
+<br>
+<%= render 'form', kudo: kudo %>
+<br>
+<%= link_to 'Back', kudos_path, class:"btn btn-dark" %>
+<%= link_to 'Delete', kudo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
