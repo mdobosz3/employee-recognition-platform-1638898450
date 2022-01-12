@@ -20,6 +20,9 @@
   <%= render 'pages/header' %>
   <br/>
   <div class="container">
+    <% if notice %>
+      <%= render 'pages/notice' %>
+    <% end %>
     <%= yield %>
   </div>
     <!-- Optional JavaScript; choose one of the two! -->

@@ -2,6 +2,7 @@
 
 class KudosController < ApplicationController
   before_action :authenticate_employee!
+  before_action :check_kudo_giver, only: %i[edit update destroy]
 
   def index
     render :index, locals: { kudos: Kudo.all }
@@ -42,6 +43,10 @@ class KudosController < ApplicationController
     redirect_to kudos_url, notice: 'Kudos was successfully destroyed.'
   end
 
+  def check_kudo_giver
+    redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.' unless kudo.giver == current_employee
+  end
+
   private
 
   def kudo_params
@@ -49,6 +54,6 @@ class KudosController < ApplicationController
   end
 
   def kudo
-    @kudo ||= Kudo.find(params[:id])
+    @kudo = Kudo.find(params[:id])
   end
 end
