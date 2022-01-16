@@ -27,9 +27,9 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   # Tests
-  gem 'rspec-rails', '~> 5.0.0'
-  gem 'factory_bot_rails'
   gem 'capybara', '~> 3.36'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 5.0.0'
   gem 'selenium-webdriver', '~> 4.1'
 end
 
