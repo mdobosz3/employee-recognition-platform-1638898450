@@ -19,6 +19,7 @@ gem 'webpacker', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise', '~> 4.8'
 gem 'faker', '~> 1.6', '>= 1.6.3'
+
 group :development, :test do
   # Debugging tool
   gem 'pry-rails'
@@ -27,6 +28,9 @@ group :development, :test do
   gem 'rubocop-rspec'
   # Tests
   gem 'rspec-rails', '~> 5.0.0'
+  gem 'factory_bot_rails'
+  gem 'capybara', '~> 3.36'
+  gem 'selenium-webdriver', '~> 4.1'
 end
 
 group :development do
