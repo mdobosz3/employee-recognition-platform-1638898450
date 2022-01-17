@@ -8,6 +8,7 @@ RSpec.describe 'Kudo check', type: :system do
   end
 
   let!(:employee) { create(:employee) }
+  let!(:kudo) { build(:kudo) }
 
   it 'crud kudo' do
     visit root_path
@@ -18,8 +19,8 @@ RSpec.describe 'Kudo check', type: :system do
     expect(page).to have_content 'Signed in successfully.'
 
     click_link 'New Kudos'
-    fill_in 'Title', with: 'title test'
-    fill_in 'Content', with: 'content test'
+    fill_in 'Title', with: kudo.title
+    fill_in 'Content', with: kudo.content
     click_button 'Create Kudo'
     expect(page).to have_content 'Kudos was successfully created.'
 
