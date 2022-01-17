@@ -19,17 +19,17 @@ RSpec.describe 'Employee account', type: :system do
     expect(page).to have_text('Welcome! You have signed up successfully.')
     click_link 'Log Out'
 
-  #let!(:employee) { FactoryBot.attributes_for(:employee) }
+    # let!(:employee) { FactoryBot.attributes_for(:employee) }
 
-    #it 'sign up and sign in' do
-      #visit root_path
-      #click_link 'Sign Up'
-      #fill_in 'Email', with: employee
-      #fill_in 'Password', with: employee
-      #fill_in 'Password confirmation', with: employee
-      #click_button 'Sign up'
-      #expect(page).to have_text('Welcome! You have signed up successfully.')
-      #click_link 'Log Out'
+    # it 'sign up and sign in' do
+    # visit root_path
+    # click_link 'Sign Up'
+    # fill_in 'Email', with: employee
+    # fill_in 'Password', with: employee
+    # fill_in 'Password confirmation', with: employee
+    # click_button 'Sign up'
+    # expect(page).to have_text('Welcome! You have signed up successfully.')
+    # click_link 'Log Out'
 
     click_link 'Log In'
     fill_in 'Email', with: employee.email
