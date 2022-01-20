@@ -10,6 +10,8 @@
   kudo = Employee.create(email: "test#{i}@test.com", password: "password")
 end
 
+  AdminUser.create(email: "admin@admin.com", password: "password")
+
 1.upto(4) do |i|
   kudo = Kudo.create(title: Faker::Beer.style, content: Faker::Coffee.notes, giver_id: "#{i}", receiver_id: "#{i+1}")
 end
