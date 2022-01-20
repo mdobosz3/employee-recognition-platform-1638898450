@@ -5,5 +5,5 @@
 https://employee-recognition-platfrom.herokuapp.com
 
 ### If you want to login please use this account: 
-- login: jedynka@gmail.com 
-- password: 111111
+- login: test1@test.com 
+- password: password
