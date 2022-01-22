@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "tests if an admin can log in", type: :system do
+RSpec.describe 'tests if an admin can log in', type: :system do
   before do
     driven_by(:rack_test)
   end
