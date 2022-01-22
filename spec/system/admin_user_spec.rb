@@ -11,7 +11,7 @@ RSpec.describe 'tests if an admin can log in', type: :system do
 
   it 'admin log in' do
     visit root_path
-    click_link 'Admin Dashboard'
+    click_link 'Admin Log In'
     fill_in 'Email', with: admin_user.email
     fill_in 'Password', with: admin_user.password
     click_button 'Log in'
