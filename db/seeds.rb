@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 1.upto(5) do |i|
-  kudo = Employee.create(email: "test#{i}@test.com", password: "password")
+  employee = Employee.create(email: "test#{i}@test.com", password: "password")
 end
 
   AdminUser.create(email: "admin@admin.com", password: "password")
