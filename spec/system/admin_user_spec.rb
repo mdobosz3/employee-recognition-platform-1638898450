@@ -15,6 +15,7 @@ RSpec.describe 'tests if an admin can log in', type: :system do
     fill_in 'Email', with: admin_user.email
     fill_in 'Password', with: admin_user.password
     click_button 'Log in'
-    expect(page).to have_text('Signed in successfully.')
+    expect(page).to have_text 'Signed in successfully.'
+    expect(page).to have_text 'Admin Dashboard'
   end
 end
