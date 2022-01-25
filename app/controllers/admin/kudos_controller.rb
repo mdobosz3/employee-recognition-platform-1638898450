@@ -1,58 +1,60 @@
-class Admin::KudosController < ApplicationController
-  before_action :set_admin_kudo, only: [:show, :edit, :update, :destroy]
+module Admin
+  class KudosController < AdminController
 
-  # GET /admin/kudos
-  def index
-    @admin_kudos = Admin::Kudo.all
-  end
-
-  # GET /admin/kudos/1
-  def show
-  end
-
-  # GET /admin/kudos/new
-  def new
-    @admin_kudo = Admin::Kudo.new
-  end
-
-  # GET /admin/kudos/1/edit
-  def edit
-  end
-
-  # POST /admin/kudos
-  def create
-    @admin_kudo = Admin::Kudo.new(admin_kudo_params)
-
-    if @admin_kudo.save
-      redirect_to @admin_kudo, notice: 'Kudo was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  # PATCH/PUT /admin/kudos/1
-  def update
-    if @admin_kudo.update(admin_kudo_params)
-      redirect_to @admin_kudo, notice: 'Kudo was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /admin/kudos/1
-  def destroy
-    @admin_kudo.destroy
-    redirect_to admin_kudos_url, notice: 'Kudo was successfully destroyed.'
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_kudo
-      @admin_kudo = Admin::Kudo.find(params[:id])
+    # GET /admin/kudos
+    def index
+      render :index, locals: { kudos: Kudo.all }
     end
 
-    # Only allow a list of trusted parameters through.
-    def admin_kudo_params
-      params.fetch(:admin_kudo, {})
+    # GET /admin/kudos/1
+    def show
+      render :show, locals: { kudo: kudo }
     end
+
+    # GET /admin/kudos/new
+    def new
+      render :new, locals: { kudo: Kudo.new }
+    end
+
+    # GET /admin/kudos/1/edit
+    def edit
+      render :edit, locals: { kudo: kudo }
+    end
+
+    # POST /admin/kudos
+    def create
+      kudo = Kudo.new(kudo_params)
+      if kudo.save
+        redirect_to admin_kudo_path(kudo), notice: 'Kudo was successfully created.'
+      else
+        render :new, locals: { kudo: kudo }
+      end
+    end
+
+    # PATCH/PUT /admin/kudos/1
+    def update
+      if kudo.update(kudo_params)
+        redirect_to admin_kudo_path(kudo), notice: 'Kudo was successfully updated.'
+      else
+        render :edit, locals: { kudo: kudo }
+      end
+    end
+
+    # DELETE /admin/kudos/1
+    def destroy
+      kudo.destroy
+      redirect_to admin_kudos_url, notice: 'Kudo was successfully destroyed.'
+    end
+
+    private
+      # Use callbacks to share common setup or constraints between actions.
+      def kudo
+        @kudo = Kudo.find(params[:id])
+      end
+
+      # Only allow a list of trusted parameters through.
+      def kudo_params
+        params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
+      end
+  end
 end
