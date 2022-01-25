@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Admin
   class KudosController < AdminController
-
     # GET /admin/kudos
     def index
       render :index, locals: { kudos: Kudo.all }
@@ -47,14 +48,15 @@ module Admin
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def kudo
-        @kudo = Kudo.find(params[:id])
-      end
 
-      # Only allow a list of trusted parameters through.
-      def kudo_params
-        params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def kudo
+      @kudo = Kudo.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def kudo_params
+      params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
+    end
   end
 end
