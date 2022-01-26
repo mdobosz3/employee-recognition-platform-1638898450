@@ -13,13 +13,8 @@ RSpec.describe 'Kudo check', type: :system do
   let!(:kudo) { build(:kudo) }
 
   it 'crud kudo' do
-    visit root_path
-    click_link 'Admin Log In'
-    fill_in 'Email', with: admin_user.email
-    fill_in 'Password', with: admin_user.password
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully.'
-    expect(page).to have_content 'Admin Dashboard'
+    login_as(admin_user)
+    visit admin_root_path
 
     click_link 'Kudos index'
     click_link 'New Kudo'
