@@ -18,7 +18,7 @@ RSpec.describe 'Kudo check', type: :system do
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully.'
 
-    click_link 'New Kudos'
+    click_link 'New Kudo'
     fill_in 'Title', with: kudo.title
     fill_in 'Content', with: kudo.content
     click_button 'Create Kudo'

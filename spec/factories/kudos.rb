@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :kudo do
-    title { 'title' }
+    title { 'title kudo' }
     content { 'content' }
     giver factory: :employee
     receiver factory: :employee
