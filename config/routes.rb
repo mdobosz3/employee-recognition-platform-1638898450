@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'pages#dashboard'
     resources :kudos
+    resources :company_values
   end
 end
