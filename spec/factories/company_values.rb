@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :company_value do
-    title { 'title company' }
+    title { 'happy' }
   end
 end

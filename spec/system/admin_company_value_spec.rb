@@ -19,7 +19,7 @@ RSpec.describe 'CompanyValue check', type: :system do
     fill_in 'Title', with: company_value.title
     click_button 'Create Company value'
     expect(page).to have_content 'Company value was successfully created.'
-    expect(page).to have_content 'title company'
+    expect(page).to have_content company_value.title
 
     click_link 'Edit'
     fill_in 'Title', with: 'title test edit'
@@ -29,6 +29,6 @@ RSpec.describe 'CompanyValue check', type: :system do
 
     click_link 'Delete'
     expect(page).to have_content 'Company value was successfully destroyed.'
-    expect(page).to have_content 'Company value'
+    expect(page).not_to have_content 'title test edit'
   end
 end
