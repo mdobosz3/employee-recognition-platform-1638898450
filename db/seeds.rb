@@ -16,5 +16,5 @@ AdminUser.create(email: "admin@admin.com", password: "password")
   kudo = Kudo.create(title: Faker::Beer.style, content: Faker::Coffee.notes, giver_id: "#{i}", receiver_id: "#{i+1}")
 end
 
-CompanyValue.create( title: "Patient" )
-CompanyValue.create( title: "Helpful" )
+CompanyValue.create(title: "Patient")
+CompanyValue.create(title: "Helpful")

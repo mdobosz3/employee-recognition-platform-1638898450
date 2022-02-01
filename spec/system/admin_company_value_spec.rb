@@ -14,7 +14,7 @@ RSpec.describe 'CompanyValue check', type: :system do
     login_as(admin_user)
     visit admin_root_path
 
-    click_link 'Company value'
+    click_link 'Company values'
     click_link 'New Company value'
     fill_in 'Title', with: company_value.title
     click_button 'Create Company value'
