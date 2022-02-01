@@ -6,6 +6,7 @@
       <th>Content</th>
       <th>Giver</th>
       <th>Receiver</th>
+      <th>Company value</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
         <td><%= kudo.content %></td>
         <td><%= kudo.giver.email %></td>
         <td><%= kudo.receiver.email %></td>
+        <td><%= kudo.company_value.title %></td>
         <% if kudo.giver == current_employee %>
         <td><%= link_to 'Edit', edit_kudo_path(kudo), class:"btn btn-secondary btn-sm" %> </td>
         <td><%= link_to 'Delete', kudo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
