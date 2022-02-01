@@ -16,7 +16,7 @@ RSpec.describe 'Kudo check', type: :system do
     login_as(admin_user)
     visit admin_root_path
 
-    click_link 'Kudos index'
+    click_link 'Kudos'
     click_link 'New Kudo'
     fill_in 'Title', with: kudo.title
     fill_in 'Content', with: kudo.content
