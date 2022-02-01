@@ -3,7 +3,7 @@
 module Admin
   class KudosController < AdminController
     def index
-      render :index, locals: { kudos: Kudo.all }
+      render :index, locals: { kudos: Kudo.includes(:company_value).all }
     end
 
     def show
