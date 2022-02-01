@@ -50,7 +50,7 @@ class KudosController < ApplicationController
   private
 
   def kudo_params
-    params.require(:kudo).permit(:title, :content, :receiver_id)
+    params.require(:kudo).permit(:title, :content, :receiver_id, :company_value_id)
   end
 
   def kudo
