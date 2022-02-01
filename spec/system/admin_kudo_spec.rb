@@ -26,7 +26,7 @@ RSpec.describe 'Kudo check', type: :system do
     select company_value1.title, from: 'kudo[company_value_id]'
     click_button 'Create Kudo'
     expect(page).to have_content 'Kudo was successfully created.'
-    expect(page).to have_content kudo.title
+    expect(page).to have_content 'title'
 
     click_link 'Edit'
     fill_in 'Title', with: 'title test edit'
