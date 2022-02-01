@@ -10,6 +10,8 @@ RSpec.describe 'Kudo check', type: :system do
   let!(:employee1) { create(:employee) }
   let!(:employee2) { create(:employee) }
   let!(:admin_user) { create(:admin_user) }
+  let!(:company_value1) { create(:company_value) }
+  let!(:company_value2) { create(:company_value) }
   let!(:kudo) { build(:kudo) }
 
   it 'crud kudo' do
@@ -22,15 +24,17 @@ RSpec.describe 'Kudo check', type: :system do
     fill_in 'Content', with: kudo.content
     select employee1.email, from: 'kudo[giver_id]'
     select employee2.email, from: 'kudo[receiver_id]'
+    select company_value1.title, from: 'kudo[company_value_id]'
     click_button 'Create Kudo'
     expect(page).to have_content 'Kudo was successfully created.'
-    expect(page).to have_content 'title kudo'
+    expect(page).to have_content kudo.title
 
     click_link 'Edit'
     fill_in 'Title', with: 'title test edit'
     fill_in 'Content', with: 'content test edit'
     select employee2.email, from: 'kudo[giver_id]'
     select employee1.email, from: 'kudo[receiver_id]'
+    select company_value2.title, from: 'kudo[company_value_id]'
     click_button 'Update Kudo'
     expect(page).to have_content 'Kudo was successfully updated.'
     expect(page).to have_content 'title test edit'
@@ -39,5 +43,6 @@ RSpec.describe 'Kudo check', type: :system do
     click_link 'Delete'
     expect(page).to have_content 'Kudo was successfully destroyed.'
     expect(page).to have_content 'All Kudos'
+    expect(page).not_to have_content 'title test edit'
   end
 end
