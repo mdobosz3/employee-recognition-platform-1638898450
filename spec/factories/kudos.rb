@@ -6,6 +6,6 @@ FactoryBot.define do
     content { 'content' }
     giver factory: :employee
     receiver factory: :employee
-    company_value factory: :company_value
+    company_value
   end
 end
