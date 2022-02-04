@@ -34,3 +34,12 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Exclude:
       - spec/**/*
+
+RSpec/MultipleMemoizedHelpers:
+  Description: Checks if example groups contain too many `let` and `subject` calls.
+  Enabled: true
+  AllowSubject: true
+  Max: 6
+  VersionAdded: '1.43'
+  StyleGuide: https://rspec.rubystyle.guide/#let-blocks
+  Reference: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/MultipleMemoizedHelpers
