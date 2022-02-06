@@ -12,6 +12,7 @@ RSpec.describe 'Kudo check', type: :system do
   let!(:admin_user) { create(:admin_user) }
   let!(:company_value1) { create(:company_value) }
   let!(:company_value2) { create(:company_value) }
+  let!(:kudo) { build(:kudo) }
 
   it 'crud kudo' do
     login_as(admin_user)
@@ -19,8 +20,8 @@ RSpec.describe 'Kudo check', type: :system do
 
     click_link 'Kudos'
     click_link 'New Kudo'
-    fill_in 'Title', with: 'title'
-    fill_in 'Content', with: 'content'
+    fill_in 'Title', with: kudo.title
+    fill_in 'Content', with: kudo.content
     select employee1.email, from: 'kudo[giver_id]'
     select employee2.email, from: 'kudo[receiver_id]'
     select company_value1.title, from: 'kudo[company_value_id]'
