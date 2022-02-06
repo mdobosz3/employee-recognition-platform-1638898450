@@ -5,7 +5,7 @@ class KudosController < ApplicationController
   before_action :check_kudo_giver, only: %i[edit update destroy]
 
   def index
-    render :index, locals: { kudos: Kudo.all }
+    render :index, locals: { kudos: Kudo.includes(:company_value).all }
   end
 
   def show
@@ -50,7 +50,7 @@ class KudosController < ApplicationController
   private
 
   def kudo_params
-    params.require(:kudo).permit(:title, :content, :receiver_id)
+    params.require(:kudo).permit(:title, :content, :receiver_id, :company_value_id)
   end
 
   def kudo

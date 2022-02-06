@@ -1,29 +1,37 @@
-<% if current_page?(admin_user_session_path) %>
-<h2>Admin Log in</h2>
-<%else%>
-<h2>Log in</h2>
-<%end%>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+<div class="card shadow w-25 mx-auto">
+  <div class="card-header text-center">
+    <% if current_page?(admin_user_session_path) %>
+    Admin
+    <%else%>
+    Employee
+    <%end%>
   </div>
-
-  <% if devise_mapping.rememberable? %>
+  <div class="card-body">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Enter email" %>
     </div>
-  <% end %>
-<br>
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <p style="line-height: 70%; "></p>
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Password" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+    <br>
+    <div class="d-grid gap-2">
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+    <div class="text-center">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

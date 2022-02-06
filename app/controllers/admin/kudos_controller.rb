@@ -3,7 +3,7 @@
 module Admin
   class KudosController < AdminController
     def index
-      render :index, locals: { kudos: Kudo.all }
+      render :index, locals: { kudos: Kudo.includes(:company_value).all }
     end
 
     def show
@@ -47,7 +47,7 @@ module Admin
     end
 
     def kudo_params
-      params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
+      params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id, :company_value_id)
     end
   end
 end
