@@ -1,0 +1,6 @@
+<h1>Editing Reward</h1>
+
+<%= render 'form', reward: reward %>
+<br>
+<%= link_to 'Back', admin_rewards_path, class:"btn btn-dark" %> |
+<%= link_to 'Delete', admin_reward_path(reward), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
