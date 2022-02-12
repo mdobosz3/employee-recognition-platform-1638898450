@@ -11,7 +11,7 @@ module Admin
     end
 
     def edit
-      render :edit, locals: { reward: reward }
+      render :edit, locals: { reward: reward_find }
     end
 
     def create
@@ -24,21 +24,21 @@ module Admin
     end
 
     def update
-      if reward.update(reward_params)
-        redirect_to admin_rewards_path(reward), notice: 'Reward was successfully updated.'
+      if reward_find.update(reward_params)
+        redirect_to admin_rewards_path(reward_find), notice: 'Reward was successfully updated.'
       else
-        render :edit, locals: { reward: reward }
+        render :edit, locals: { reward: reward_find }
       end
     end
 
     def destroy
-      reward.destroy
+      reward_find.destroy
       redirect_to admin_rewards_url, notice: 'Reward was successfully destroyed.'
     end
 
     private
 
-    def reward
+    def reward_find
       @reward ||= Reward.find(params[:id])
     end
 
