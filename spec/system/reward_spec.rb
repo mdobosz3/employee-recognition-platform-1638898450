@@ -32,6 +32,5 @@ RSpec.describe 'Reward check', type: :system do
     expect(page).to have_content reward.title
     expect(page).not_to have_content reward.description
     expect(page).to have_content reward.price
-
   end
 end
