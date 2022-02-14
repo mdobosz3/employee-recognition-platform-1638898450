@@ -18,3 +18,7 @@ end
 
 CompanyValue.create(title: "Patient")
 CompanyValue.create(title: "Helpful")
+
+1.upto(3) do |i|
+  Reward.create(title: Faker::JapaneseMedia::DragonBall.character, description: Faker::Movies::Hobbit.quote, price: "#{i}")
+end
