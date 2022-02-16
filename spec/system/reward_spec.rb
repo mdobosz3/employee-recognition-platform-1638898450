@@ -7,17 +7,12 @@ RSpec.describe 'Reward check', type: :system do
     driven_by(:rack_test)
   end
 
-  let!(:employee) { create(:employee) }
+  let(:employee) { create(:employee) }
   let!(:reward) { create(:reward) }
 
-  it 'crud Reward for employee' do
+  it 'Reward index and show for employee' do
+    sign_in employee
     visit root_path
-    click_link 'Log In'
-    fill_in 'Email', with: employee.email
-    fill_in 'Password', with: employee.password
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully.'
-
     click_link 'Rewards'
     expect(page).to have_content reward.title
     expect(page).not_to have_content reward.description
