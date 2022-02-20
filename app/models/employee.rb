@@ -12,5 +12,4 @@ class Employee < ApplicationRecord
   def kudo_points
     received_kudos.count
   end
-
 end
