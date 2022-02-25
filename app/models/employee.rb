@@ -11,6 +11,7 @@ class Employee < ApplicationRecord
 
   def kudo_points
     return 0 if received_kudos.blank?
+
     received_kudos.count
   end
 end
