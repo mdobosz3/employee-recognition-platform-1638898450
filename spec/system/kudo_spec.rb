@@ -19,7 +19,7 @@ RSpec.describe 'Kudo check', type: :system do
     fill_in 'Password', with: employee.password
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully.'
-    within('#Kudo_Points') do
+    within('[data-test-id="Kudo_Points"]') do
       expect(page).to have_content '0'
     end
 
@@ -31,7 +31,7 @@ RSpec.describe 'Kudo check', type: :system do
     expect(page).to have_content 'Kudos was successfully created.'
     expect(page).to have_content kudo.title
     expect(page).to have_content company_value1.title
-    within('#Kudo_Points') do
+    within('[data-test-id="Kudo_Points"]') do
       expect(page).to have_content '1'
     end
 
@@ -47,7 +47,7 @@ RSpec.describe 'Kudo check', type: :system do
     click_link 'Delete'
     expect(page).to have_content 'Kudos was successfully destroyed.'
     expect(page).not_to have_content 'title test edit'
-    within('#Kudo_Points') do
+    within('[data-test-id="Kudo_Points"]') do
       expect(page).to have_content '0'
     end
   end

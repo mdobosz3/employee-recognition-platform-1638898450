@@ -15,10 +15,10 @@
     <div class="collapse navbar-collapse d-flex flex-row-reverse bd-highlight">
       <ul class="navbar-nav">
 
-        <span class="nav-link", id="Kudo_Points"> <%='<i class="bi bi-award"> </i>'.html_safe%><%=current_employee.kudo_points%></span>
+        <span class="nav-link bi bi-award", data-test-id="Kudo_Points"><%=current_employee.kudo_points%></span>
 
         <li class="nav-item">
-          <%= link_to '<i class="bi bi-box-arrow-right"> </i>Log Out'.html_safe, destroy_employee_session_path, method: :delete, class: "btn btn-outline-dark" %>
+          <%= link_to ' Log Out', destroy_employee_session_path, method: :delete, class: "btn btn-outline-dark bi bi-box-arrow-right" %>
         </li>
 
         <% else %>
