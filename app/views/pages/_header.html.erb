@@ -1,19 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-   <%= link_to image_tag("https://media1.thehungryjpeg.com/thumbs2/ori_3490122_b6f8966043e8b6950749930f8a2c9475ee03de54_happy-smile-smiling-face-on-yellow-background-laughter-logo-funny-v.jpg", size:"70x45"), root_path, class:"navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <div class="container">
+   <%= link_to image_tag("https://media1.thehungryjpeg.com/thumbs2/ori_3490122_b6f8966043e8b6950749930f8a2c9475ee03de54_happy-smile-smiling-face-on-yellow-background-laughter-logo-funny-v.jpg", size:"40x30"), root_path, class:"navbar-brand" %>
+  
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
         <% if employee_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Log Out", destroy_employee_session_path, method: :delete, class: "nav-link" %>
-          </li>
 
-          <li class="nav-item">
-            <%= link_to "Rewards", rewards_path, class: "nav-link" %>
-          </li>
+        <li class="nav-item">
+          <%= link_to "Rewards", rewards_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse d-flex flex-row-reverse bd-highlight">
+      <ul class="navbar-nav">
+
+        <span class="nav-link bi bi-award", data-test-id="Kudo_Points"><%=current_employee.kudo_points%></span>
+
+        <li class="nav-item">
+          <%= link_to ' Log Out', destroy_employee_session_path, method: :delete, class: "btn btn-outline-dark bi bi-box-arrow-right" %>
+        </li>
 
         <% else %>
           <li class="nav-item">
