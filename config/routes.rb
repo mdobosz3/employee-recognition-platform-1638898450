@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :employees, path: 'employees'
   resources :kudos
   resources :rewards
+  resources :orders
 
   root 'kudos#index'
 
