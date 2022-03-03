@@ -8,10 +8,10 @@ RSpec.describe 'Order check', type: :system do
   end
 
   let!(:employee) { create(:employee) }
-  let!(:company_value) { create(:company_value) }
+  let(:company_value) { create(:company_value) }
 
   it 'Buying a reward' do
-    create(:kudo, giver: employee, receiver: employee, company_value: company_value)
+    create(:kudo, receiver: employee)
     create(:reward)
     sign_in employee
     visit root_path

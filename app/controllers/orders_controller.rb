@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
 
   def create
     if current_employee.kudo_points < reward.price
-      redirect_to rewards_path, notice: 'You don`t have enough kudos.'
+      redirect_to rewards_path, notice: "You don't have enough kudos."
     else
       order = Order.new(employee: current_employee, reward: reward)
       order.save
@@ -17,9 +17,5 @@ class OrdersController < ApplicationController
 
   def reward
     Reward.find(params[:reward])
-  end
-
-  def order
-    @order = Order.find(params[:id])
   end
 end
