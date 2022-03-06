@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, path: 'admin'
   devise_for :employees, path: 'employees'
   resources :kudos
-  resources :rewards
+  resources :rewards, only: %i[index show]
+  resources :orders, only: %i[index create]
 
   root 'kudos#index'
 
