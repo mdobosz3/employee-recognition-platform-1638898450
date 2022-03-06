@@ -1,13 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient shadow">
   <div class="container">
-   <%= link_to image_tag("https://media1.thehungryjpeg.com/thumbs2/ori_3490122_b6f8966043e8b6950749930f8a2c9475ee03de54_happy-smile-smiling-face-on-yellow-background-laughter-logo-funny-v.jpg", size:"40x30"), root_path, class:"navbar-brand" %>
-  
+    <i>
+      <%= link_to "ERP", root_path, class:"navbar-brand mb-0 h1" %>
+    </i>
+  <% if employee_signed_in? %>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
-        <% if employee_signed_in? %>
+        
 
         <li class="nav-item">
-          <%= link_to "Rewards", rewards_path, class: "nav-link" %>
+          <%= link_to "Rewards", rewards_path, class: "nav-link bg-gradient btn-success" %>
         </li>
       </ul>
     </div>
@@ -18,22 +20,28 @@
         <span class="nav-link bi bi-award", data-test-id="Kudo_Points"><%=current_employee.kudo_points%></span>
 
         <li class="nav-item">
-          <%= link_to ' Log Out', destroy_employee_session_path, method: :delete, class: "btn btn-outline-dark bi bi-box-arrow-right" %>
+          <%= link_to ' Log Out', destroy_employee_session_path, method: :delete, class: "btn btn-outline-light btn-sm bi bi-box-arrow-right" %>
         </li>
+      </ul>
+    </div>
 
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Sign Up", new_employee_registration_path, class: "nav-link" %>
-          </li>
-            
-          <li class="nav-item">
-            <%= link_to "Log In", new_employee_session_path, class: "nav-link" %>
-          </li>
 
-         <li class="nav-item">
-            <%= link_to "Admin Log In", admin_root_path, class:"nav-link", style: "color:green"%>
-         </li>
+    <div class="collapse navbar-collapse d-flex flex-row-reverse bd-highlight">
+      <ul class="navbar-nav">
+
+        <li class="nav-item">
+          <%= link_to " Sign Up", new_employee_registration_path, class: "btn btn-outline-light btn-sm me-2 bi bi-person-plus" %>
+        </li>
+            
+        <li class="nav-item">
+          <%= link_to " Log In", new_employee_session_path, class: "btn btn-outline-light btn-sm me-2 bi bi-box-arrow-in-right" %>
+        </li>
           
+        <li class="nav-item">
+          <%= link_to " Admin Log In", admin_root_path, class:"btn btn-outline-light btn-sm bi bi-person-workspace"%>
+        </li>
+
         <% end %>
 
       </ul>
