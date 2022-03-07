@@ -37,7 +37,7 @@ RSpec.describe 'Order check', type: :system do
         click_link 'Orders'
         expect(page).to have_content reward.title
         expect(page).to have_content reward.description
-        expect(page).to have_content reward.price
+        expect(page).to have_content reward.price.to_i
       end
 
       Capybara.using_session(:admin_user) do
@@ -54,8 +54,8 @@ RSpec.describe 'Order check', type: :system do
 
         visit root_path
         click_link 'Orders'
-        expect(page).to have_content reward.price
-        expect(page).not_to have_content reward2.price
+        expect(page).to have_content reward.price.to_i
+        expect(page).not_to have_content reward2.price.to_i
       end
     end
   end
