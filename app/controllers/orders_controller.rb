@@ -2,6 +2,7 @@
 
 class OrdersController < ApplicationController
   before_action :authenticate_employee!
+
   def index
     render :index, locals: { orders: Order.all }
   end
