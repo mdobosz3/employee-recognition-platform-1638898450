@@ -8,11 +8,12 @@ RSpec.describe 'Order check', type: :system do
   end
 
   let!(:employee) { create(:employee) }
+  let(:admin_user) { create(:admin_user) }
   let(:company_value) { create(:company_value) }
-
+  let!(:reward) { create(:reward, price:1) }
+  let(:reward2) { create(:reward, price:10) }
   it 'Buying a reward' do
     create(:kudo, receiver: employee)
-    create(:reward)
     sign_in employee
     visit root_path
     click_link 'Rewards'
@@ -25,5 +26,23 @@ RSpec.describe 'Order check', type: :system do
     within('[data-test-id="Kudo_Points"]') do
       expect(page).to have_content '0'
     end
+
+    click_link 'Orders'
+    expect(page).to have_content reward.title
+    expect(page).to have_content reward.description
+    expect(page).to have_content reward.price
+
+    sign_in admin_user
+    visit admin_root_path
+    click_link 'Rewards'
+    click_link 'Edit'
+    fill_in 'reward[price]', with: reward2.price
+
+    sign_in employee
+    visit root_path
+    click_link 'Orders'
+    expect(page).to have_content reward.price
+    expect(page).not_to have_content reward2.price
+
   end
 end
