@@ -2,7 +2,6 @@
 
 module Admin
   class OrdersController < ApplicationController
-
     def index
       render :index, locals: { orders: Order.all }
     end

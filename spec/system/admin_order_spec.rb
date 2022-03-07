@@ -13,7 +13,6 @@ RSpec.describe 'Order check', type: :system do
     let(:admin_user) { create(:admin_user) }
     let(:company_value) { create(:company_value) }
     let!(:reward) { create(:reward) }
-    
 
     before do
       create(:kudo, receiver: employee1)
@@ -21,28 +20,27 @@ RSpec.describe 'Order check', type: :system do
     end
 
     it 'order list' do
-        sign_in admin_user
+      sign_in admin_user
 
-        visit admin_root_path
-        click_link 'Orders'
-        expect(page).not_to have_content employee1.email
-        expect(page).not_to have_content employee2.email
-        expect(page).not_to have_content reward.title
-        expect(page).not_to have_content reward.description
-        expect(page).not_to have_content reward.price
-        
-        create(:order, employee_id: employee1.id, reward: reward, reward_snapshot: reward) 
-        create(:order, employee_id: employee2.id, reward: reward, reward_snapshot: reward) 
+      visit admin_root_path
+      click_link 'Orders'
+      expect(page).not_to have_content employee1.email
+      expect(page).not_to have_content employee2.email
+      expect(page).not_to have_content reward.title
+      expect(page).not_to have_content reward.description
+      expect(page).not_to have_content reward.price
 
-        visit admin_root_path
-        click_link 'Orders'
+      create(:order, employee_id: employee1.id, reward: reward, reward_snapshot: reward)
+      create(:order, employee_id: employee2.id, reward: reward, reward_snapshot: reward)
 
-        expect(page).to have_content employee1.email
-        expect(page).to have_content employee2.email
-        expect(page).to have_content reward.title
-        expect(page).to have_content reward.description
-        expect(page).to have_content reward.price.to_i
-        
+      visit admin_root_path
+      click_link 'Orders'
+
+      expect(page).to have_content employee1.email
+      expect(page).to have_content employee2.email
+      expect(page).to have_content reward.title
+      expect(page).to have_content reward.description
+      expect(page).to have_content reward.price.to_i
     end
   end
 end
