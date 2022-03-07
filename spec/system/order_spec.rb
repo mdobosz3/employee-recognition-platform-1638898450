@@ -10,8 +10,9 @@ RSpec.describe 'Order check', type: :system do
   let!(:employee) { create(:employee) }
   let(:admin_user) { create(:admin_user) }
   let(:company_value) { create(:company_value) }
-  let!(:reward) { create(:reward, price:1) }
-  let(:reward2) { create(:reward, price:10) }
+  let!(:reward) { create(:reward, price: 1) }
+  let(:reward2) { create(:reward, price: 10) }
+
   it 'Buying a reward' do
     create(:kudo, receiver: employee)
     sign_in employee
@@ -43,6 +44,5 @@ RSpec.describe 'Order check', type: :system do
     click_link 'Orders'
     expect(page).to have_content reward.price
     expect(page).not_to have_content reward2.price
-
   end
 end

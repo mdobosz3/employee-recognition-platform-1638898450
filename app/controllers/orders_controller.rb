@@ -15,11 +15,10 @@ class OrdersController < ApplicationController
       redirect_to rewards_path, notice: 'Reward was successfully buying.'
     end
   end
- 
+
   private
 
   def reward
     Reward.find(params[:reward])
   end
-
 end
