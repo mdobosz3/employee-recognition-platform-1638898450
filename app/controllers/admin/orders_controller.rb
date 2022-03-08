@@ -3,7 +3,7 @@
 module Admin
   class OrdersController < ApplicationController
     def index
-      render :index, locals: { orders: Order.all }
+      render :index, locals: { orders: Order.includes(:employee).all }
     end
   end
 end

@@ -5,7 +5,7 @@ class KudosController < ApplicationController
   before_action :check_kudo_giver, only: %i[edit update destroy]
 
   def index
-    render :index, locals: { kudos: Kudo.includes(:company_value).all }
+    render :index, locals: { kudos: Kudo.includes(:company_value, :giver, :receiver).all }
   end
 
   def show
