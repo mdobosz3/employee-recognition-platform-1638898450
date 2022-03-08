@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'selenium-webdriver', '~> 4.1'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'bullet', group: 'development'
 end
 
 group :development do
