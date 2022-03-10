@@ -3,7 +3,7 @@
 module Admin
   class OrdersController < AdminController
     def index
-      render :index, locals: { orders: Order.includes(:employee).all.order(:status)  }
+      render :index, locals: { orders: Order.includes(:employee).all.order(:status) }
     end
 
     def update
