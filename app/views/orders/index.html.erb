@@ -10,13 +10,12 @@
   </thead>
 
   <tbody>
-    <% current_employee.orders.each do |order| %>
+    <% orders.each do |order| %>
       <tr>
         <td><%= order.reward_snapshot.title %></td>
         <td><%= order.reward_snapshot.description %></td>
         <td><%= order.reward_snapshot.price.to_i %></td>
         <td><%= order.created_at.strftime("%d-%m-%y %H:%M") %></td>
-        <td><%= order.employee.email %></td>
       </tr>
     <% end %>
   </tbody>
