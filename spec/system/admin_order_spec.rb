@@ -29,7 +29,7 @@ RSpec.describe 'Order check', type: :system do
       expect(page).not_to have_content reward.title
       expect(page).not_to have_content reward.description
       expect(page).not_to have_content reward.price
-
+     
       create(:order, employee_id: employee1.id, reward: reward, reward_snapshot: reward)
       create(:order, employee_id: employee2.id, reward: reward, reward_snapshot: reward)
 
@@ -41,6 +41,9 @@ RSpec.describe 'Order check', type: :system do
       expect(page).to have_content reward.title
       expect(page).to have_content reward.description
       expect(page).to have_content reward.price.to_i
+
+      click_button 'Deliver', match: :first
+      expect(page).to have_content 'Order was successfully delivered.'
     end
   end
 end
