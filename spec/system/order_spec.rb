@@ -12,7 +12,7 @@ RSpec.describe 'Order check', type: :system do
     let(:admin_user) { create(:admin_user) }
     let(:company_value) { create(:company_value) }
     let!(:reward) { create(:reward, price: 1) }
-    let(:reward2) { create(:reward, price: 10) }
+    let(:reward2) { create(:reward, price: 99) }
 
     before do
       create(:kudo, receiver: employee)
@@ -37,7 +37,7 @@ RSpec.describe 'Order check', type: :system do
         click_link 'Orders'
         expect(page).to have_content reward.title
         expect(page).to have_content reward.description
-        expect(page).to have_content reward.price
+        expect(page).to have_content reward.price.to_i
       end
 
       Capybara.using_session(:admin_user) do
@@ -47,6 +47,7 @@ RSpec.describe 'Order check', type: :system do
         click_link 'Rewards'
         click_link 'Edit'
         fill_in 'reward[price]', with: reward2.price
+        click_button 'Update Reward'
       end
 
       Capybara.using_session(:employee) do
@@ -54,8 +55,8 @@ RSpec.describe 'Order check', type: :system do
 
         visit root_path
         click_link 'Orders'
-        expect(page).to have_content reward.price
-        expect(page).not_to have_content reward2.price
+        expect(page).to have_content reward.price.to_i
+        expect(page).not_to have_content reward2.price.to_i
       end
     end
   end

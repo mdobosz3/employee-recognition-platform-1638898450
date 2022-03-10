@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    render :index, locals: { orders: Order.all }
+    render :index, locals: { orders: Order.where(employee: current_employee) }
   end
 
   def create

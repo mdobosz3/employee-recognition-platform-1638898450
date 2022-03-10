@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :order do
     employee
     reward
-    reward_snapshot
+    reward_snapshot {}
   end
 end
