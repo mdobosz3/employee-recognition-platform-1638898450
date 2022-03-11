@@ -7,8 +7,13 @@ module Admin
     end
 
     def update
-      order.delivered!
-      redirect_to admin_orders_path, notice: 'Order was successfully delivered.'
+      if order.delivered?
+        redirect_to admin_orders_path, notice: 'Order was already delivered'
+      elsif order.update(status: :delivered)
+        redirect_to admin_orders_path, notice: 'Order was successfully delivered.'
+      else
+        redirect_to admin_orders_path, notice: 'Order was not delivered'
+      end
     end
 
     private

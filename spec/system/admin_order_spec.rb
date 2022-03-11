@@ -7,7 +7,7 @@ RSpec.describe 'Order check', type: :system do
     driven_by(:rack_test)
   end
 
-  context 'when the admin checks the order list of all employees' do
+  context 'when the admin checks the order list of all employees and delivery of the order' do
     let!(:employee1) { create(:employee) }
     let!(:employee2) { create(:employee) }
     let(:admin_user) { create(:admin_user) }
@@ -19,7 +19,7 @@ RSpec.describe 'Order check', type: :system do
       create(:kudo, receiver: employee2)
     end
 
-    it 'order list' do
+    it 'order list and delivery button' do
       sign_in admin_user
 
       visit admin_root_path
@@ -42,8 +42,12 @@ RSpec.describe 'Order check', type: :system do
       expect(page).to have_content reward.description
       expect(page).to have_content reward.price.to_i
 
+      expect(page).to have_button 'Deliver'
       click_button 'Deliver', match: :first
       expect(page).to have_content 'Order was successfully delivered.'
+      click_button 'Deliver'
+      expect(page).to have_content 'Order was successfully delivered.'
+      expect(page).to have_no_button 'Deliver'
     end
   end
 end
