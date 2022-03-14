@@ -7,6 +7,7 @@
       <th>Description</th>
       <th>Price</th>
       <th>Purchase time</th>
+      <th>Status</th>
     </tr>
   </thead>
 
@@ -18,6 +19,9 @@
         <td><%= order.reward_snapshot.description %></td>
         <td><%= order.reward_snapshot.price.to_i %></td>
         <td><%= order.created_at.strftime("%d-%m-%y %H:%M") %></td>
+        <td><%if order.not_delivered?%>
+        <%= button_to ' Deliver', admin_order_path(order), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-send-check" %>
+      <%end%></td>
       </tr>
     <% end %>
   </tbody>

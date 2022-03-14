@@ -1,9 +1,25 @@
 # frozen_string_literal: true
 
 module Admin
-  class OrdersController < ApplicationController
+  class OrdersController < AdminController
     def index
-      render :index, locals: { orders: Order.includes(:employee).all }
+      render :index, locals: { orders: Order.includes(:employee).all.order(:status) }
+    end
+
+    def update
+      if order.delivered?
+        redirect_to admin_orders_path, notice: 'Order was already delivered'
+      elsif order.update(status: :delivered)
+        redirect_to admin_orders_path, notice: 'Order was successfully delivered.'
+      else
+        redirect_to admin_orders_path, notice: 'Order was not delivered'
+      end
+    end
+
+    private
+
+    def order
+      @order = Order.find(params[:id])
     end
   end
 end
