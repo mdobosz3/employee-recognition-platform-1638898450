@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    #render :index, locals: { orders: Order.includes(params[:status]).where(employee: current_employee) }
     if params[:status].present?
       render :index, locals: { orders: Order.filter_by_status(params[:status]) }
     else
