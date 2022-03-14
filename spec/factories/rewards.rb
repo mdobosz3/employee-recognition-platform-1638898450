@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :reward do
-    title { 'Crochet course' }
-    description { 'description reward' }
+    title { Faker::JapaneseMedia::DragonBall.character }
+    description { Faker::Movies::Hobbit.quote }
     price { '1' }
   end
 end
