@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    if params[:status].present?
+    if %w[delivered not_delivered].include?(params[:status])
       render :index, locals: { orders: Order.filter_by_status(params[:status]) }
     else
       render :index, locals: { orders: Order.all }

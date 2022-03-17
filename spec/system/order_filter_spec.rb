@@ -12,7 +12,7 @@ RSpec.describe 'Order filtering', type: :system do
     let!(:delivered_order) { create(:order, status: 'delivered') }
     let!(:not_delivered_order) { create(:order, status: 'not_delivered') }
 
-    it 'Filtering by delivered, not_delivered and all' do
+    it 'filters by the delivery status' do
       sign_in employee
 
       visit root_path
