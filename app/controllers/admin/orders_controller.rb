@@ -10,7 +10,7 @@ module Admin
       if order.delivered?
         redirect_to admin_orders_path, notice: 'Order was already delivered'
       elsif order.update(status: :delivered)
-        OrderDelivery.with(order: order).delivery_email.deliver_now
+        OrderDeliveryMailer.with(order: order).delivery_email.deliver_now
         redirect_to admin_orders_path, notice: 'Order was successfully delivered.'
       else
         redirect_to admin_orders_path, notice: 'Order was not delivered'
