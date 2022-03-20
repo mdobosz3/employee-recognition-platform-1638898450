@@ -1,51 +1,38 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient shadow">
+<nav class="navbar navbar-expand-md navbar-dark shadow" style="background-color: #242582;">
   <div class="container">
     <i>
-      <%= link_to "ERP", root_path, class:"navbar-brand mb-0 h1" %>
+      <%= link_to "ERP", root_path, class:"navbar-brand h1" %>
     </i>
   <% if employee_signed_in? %>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to "Rewards", rewards_path, class: "nav-link bg-gradient btn-success" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Orders", orders_path, class: "nav-link bg-gradient btn-success" %>
-        </li>
-      </ul>
-    </div>
-
-    <div class="collapse navbar-collapse d-flex flex-row-reverse bd-highlight">
-      <ul class="navbar-nav">
-
-        <span class="nav-link bi bi-award", data-test-id="Kudo_Points"><%=current_employee.kudo_points%></span>
-
-        <li class="nav-item">
-          <%= link_to ' Log Out', destroy_employee_session_path, method: :delete, class: "btn btn-outline-light btn-sm bi bi-box-arrow-right" %>
-        </li>
-      </ul>
-    </div>
-
-        <% else %>
-
-    <div class="collapse navbar-collapse d-flex flex-row-reverse bd-highlight">
-      <ul class="navbar-nav">
-
-        <li class="nav-item">
-          <%= link_to " Sign Up", new_employee_registration_path, class: "btn btn-outline-light btn-sm me-2 bi bi-person-plus" %>
-        </li>
-            
-        <li class="nav-item">
-          <%= link_to " Log In", new_employee_session_path, class: "btn btn-outline-light btn-sm me-2 bi bi-box-arrow-in-right" %>
-        </li>
-          
-        <li class="nav-item">
-          <%= link_to " Admin Log In", admin_root_path, class:"btn btn-outline-light btn-sm bi bi-person-workspace"%>
-        </li>
-
-        <% end %>
-
-      </ul>
-    </div>
+    <ul class="nav navbar-nav ms-auto w-100">
+      <li class="nav-item">
+        <%= link_to "Kudos", root_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Rewards", rewards_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Orders", orders_path, class: "nav-link" %>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav w-100 justify-content-end">
+      <li class="nav-item">
+        <span class="btn btn-warning active btn-sm bi bi-award", data-test-id="Kudo_Points"><%=current_employee.kudo_points%></span>
+        <%= link_to ' Log Out', destroy_employee_session_path, method: :delete, class: "btn btn-outline-warning btn-sm bi bi-box-arrow-right" %>
+      </li>
+    </ul>
+  <% else %>
+    <ul class="nav navbar-nav w-100 justify-content-end">
+      <li class="nav-item mt-1 p-1">
+        <%= link_to " Sign Up", new_employee_registration_path, class: "btn btn-outline-light btn-sm me-2 bi bi-person-plus" %>
+      </li>  
+      <li class="nav-item mt-1 p-1">
+        <%= link_to " Log In", new_employee_session_path, class: "btn btn-outline-light btn-sm me-2 bi bi-box-arrow-in-right" %>
+      </li>
+      <li class="nav-item mt-1 p-1">
+        <%= link_to " Admin Log In", admin_root_path, class:"btn btn-outline-light btn-sm bi bi-person-workspace"%>
+      </li>
+    </ul>
+   <% end %> 
   </div>
 </nav>

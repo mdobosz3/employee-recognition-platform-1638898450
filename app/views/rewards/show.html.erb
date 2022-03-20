@@ -1,7 +1,13 @@
 <h2>Reward</h2>
-
-Title: <%= reward.title %><br>
-Description: <%= reward.description %><br>
-Price: <%= reward.price %><br>
-<br>
-<%= link_to 'Back', rewards_path, class:"btn btn-secondary btn-sm" %>
+<div class="card shadow w-50 mx-auto">
+  <div class="card-header text-center", style="background-color:#3BBA9C;">
+    <h5 class="mt-2", style="color:#ffffff;"><%= reward.title %></h5>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Description</h5>
+    <p class="card-text"><%= reward.description %><p>
+    Price: <%= reward.price %><br>
+    <br>
+    <%= link_to 'Back', rewards_path, class:"btn btn-secondary btn-sm" %>
+  </div>
+</div>

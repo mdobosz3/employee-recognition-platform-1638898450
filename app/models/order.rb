@@ -2,6 +2,8 @@
 
 class Order < ApplicationRecord
   enum status: { not_delivered: 0, delivered: 1 }
+  scope :filter_by_status, ->(status) { where status: status }
+
   serialize :reward_snapshot
 
   belongs_to :employee

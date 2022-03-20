@@ -1,47 +1,40 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h1>All Kudos</h1>
-    </div>
-    <div class="col">
-      <div class="d-grid justify-content-md-end">
-        <%= link_to ' New Kudo', new_kudo_path, class:"btn btn-secondary btn-sm bi bi-file-earmark-plus" %>
-      </div>
-    </div>
-  </div>
-  <div class="d-flex justify-content-center">
-    <table class="table table-borderless table-responsive table-hover shadow card-1">
-      <thead>
-        <tr class="text-center", id="table__header">
-          <th>Title</th>
-          <th>Content</th>
-          <th>Giver</th>
-          <th>Receiver</th>
-          <th>Company value</th>
-          <th>Action</th>
+<h1>All Kudos</h1>
+<div class="d-flex justify-content-center">
+  <table class="table table-borderless table-responsive table-hover shadow card-1 w-auto">
+    <thead>
+      <tr class="text-center", id="table__header">
+        <th>Title</th>
+        <th>Content</th>
+        <th>Giver</th>
+        <th>Receiver</th>
+        <th>Company value</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% kudos.each do |kudo| %>
+        <tr class="border-bottom">
+          <td><%= kudo.title %></td>
+          <td><%= kudo.content %></td>
+          <td class="text-center"><%= kudo.giver.email %></td>
+          <td class="text-center"><%= kudo.receiver.email %></td>
+          <td class="text-center"><%= kudo.company_value.title %></td>
+          <% if kudo.giver == current_employee %>
+          <td class="btn-group">
+            <%= link_to ' Edit', edit_kudo_path(kudo), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
+            <%= link_to ' Delete', kudo_path(kudo), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-trash2" %>
+          </td>
+          <% else %>
+          <td></td>
+          <% end %>
         </tr>
-      </thead>
-      <tbody>
-        <% kudos.each do |kudo| %>
-          <tr class="border-bottom">
-            <td><%= kudo.title %></td>
-            <td><%= kudo.content %></td>
-            <td><%= kudo.giver.email %></td>
-            <td><%= kudo.receiver.email %></td>
-            <td><%= kudo.company_value.title %></td>
-            <% if kudo.giver == current_employee %>
-            <td class="btn-group text-center">
-              <%= link_to ' Edit', edit_kudo_path(kudo), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
-              <%= link_to ' Delete', kudo_path(kudo), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-trash2" %>
-            </td>
-            <% else %>
-            <td></td>
-            <% end %>
-          </tr>
-        <% end %>       
-      </tbody>
-    </table>
-  </div>
-  <br>
+      <% end %>   
+    </tbody>
+    <tfoot>
+      <td class="text-center" colspan="6">
+        <%= link_to ' New Kudo', new_kudo_path, class:"btn btn-warning btn-sm bi bi-file-earmark-plus" %>
+      </td> 
+    </tfoot>
+  </table>
 </div>
+
