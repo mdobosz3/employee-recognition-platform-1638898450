@@ -5,9 +5,9 @@ class OrdersController < ApplicationController
 
   def index
     if %w[delivered not_delivered].include?(params[:status])
-      render :index, locals: { orders: Order.filter_by_status(params[:status]) }
+      render :index, locals: { orders: Order.filter_by_status(params[:status]).where(employee: current_employee) }
     else
-      render :index, locals: { orders: Order.all }
+      render :index, locals: { orders: Order.where(employee: current_employee) }
     end
   end
 
