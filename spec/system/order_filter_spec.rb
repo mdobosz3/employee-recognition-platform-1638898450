@@ -9,8 +9,8 @@ RSpec.describe 'Order filtering', type: :system do
 
   context 'when an employee filters orders' do
     let!(:employee) { create(:employee) }
-    let!(:delivered_order) { create(:order, status: 'delivered') }
-    let!(:not_delivered_order) { create(:order, status: 'not_delivered') }
+    let!(:delivered_order) { create(:order, employee: employee, status: 'delivered' ) }
+    let!(:not_delivered_order) { create(:order, employee: employee, status: 'not_delivered') }
 
     it 'filters by the delivery status' do
       sign_in employee
