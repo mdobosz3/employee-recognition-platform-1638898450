@@ -3,6 +3,6 @@
 class OrderDeliveryMailer < ApplicationMailer
   def delivery_email
     @order = params[:order]
-    mail(to: @order.employee.email, subject: 'Your order has been delivered')
+    mail to: @order.employee.email, subject: 'Your order has been delivered'
   end
 end
