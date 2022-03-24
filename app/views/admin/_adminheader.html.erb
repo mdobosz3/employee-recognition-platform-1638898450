@@ -16,7 +16,7 @@
           <%= link_to "Rewards", admin_rewards_path, class: "nav-link bg-gradient btn-success" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Orders (#{Order.where("status = '0'").count})", admin_orders_path, class: "nav-link bg-gradient btn-success" %>
+          <%= link_to "Orders (#{Order.not_delivered.count})", admin_orders_path, class: "nav-link bg-gradient btn-success" %>
         </li>
       </ul>
     </div>

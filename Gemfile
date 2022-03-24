@@ -30,6 +30,7 @@ group :development, :test do
   gem 'bullet', group: 'development'
   gem 'capybara', '~> 3.36'
   gem 'factory_bot_rails'
+  gem 'letter_opener', group: 'development'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'selenium-webdriver', '~> 4.1'
   gem 'shoulda-matchers', '~> 5.0'
