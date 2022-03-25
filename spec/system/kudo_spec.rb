@@ -7,7 +7,7 @@ RSpec.describe 'Kudo check', type: :system do
     driven_by(:rack_test)
   end
 
-  let!(:employee) { create(:employee) }
+  let!(:employee) { create(:employee, number_of_available_kudos: 1) }
   let!(:company_value1) { create(:company_value) }
   let!(:company_value2) { create(:company_value) }
   let!(:kudo) { build(:kudo) }
@@ -19,6 +19,7 @@ RSpec.describe 'Kudo check', type: :system do
     fill_in 'Password', with: employee.password
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully.'
+    expect(page).to have_content 'Available kudos: 1'
     within('[data-test-id="Kudo_Points"]') do
       expect(page).to have_content '0'
     end
@@ -31,9 +32,13 @@ RSpec.describe 'Kudo check', type: :system do
     expect(page).to have_content 'Kudos was successfully created.'
     expect(page).to have_content kudo.title
     expect(page).to have_content company_value1.title
+    expect(page).to have_content 'Available kudos: 0'
     within('[data-test-id="Kudo_Points"]') do
       expect(page).to have_content '1'
     end
+
+    click_link 'New Kudo'
+    expect(page).to have_content 'You have no kudos available to give.'
 
     click_link 'Edit'
     fill_in 'Title', with: 'title test edit'
