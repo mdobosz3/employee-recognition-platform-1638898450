@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, path: 'admin'
   devise_for :employees, path: 'employees'
+
   resources :kudos
   resources :rewards, only: %i[index show]
   resources :orders, only: %i[index create]
@@ -15,5 +16,9 @@ Rails.application.routes.draw do
     resources :company_values
     resources :rewards
     resources :orders, only: %i[index update]
+    resources :employees, only: %i[index] do
+      get "kudos_for_all"
+      patch "add_kudos_for_all"
+    end
   end
 end
