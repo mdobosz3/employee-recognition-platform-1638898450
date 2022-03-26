@@ -1,0 +1,11 @@
+<div class="card shadow mx-auto" style="width: 25rem;">
+  <div class="card-header text-center">
+    <div class="field">
+      <%= form_with url: admin_employee_add_kudos_for_all_path(employees), method: :patch do |form| %>
+        <%= form.label :add_kudos, "Add number of available Kudos to Employees:" %>
+        <%= form.number_field :add_kudos, in: 1..20, value: 10 %>
+        <%= form.submit "Add" %>
+      <% end %>
+    </div>
+  </div>
+</div>
