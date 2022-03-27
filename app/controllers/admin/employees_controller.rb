@@ -13,7 +13,10 @@ module Admin
     def add_kudos_for_all
       Employee.all.each do |employee|
         employee.number_of_available_kudos += add_kudos
-        redirect_to admin_employee_kudos_for_all_path(Employee), notice: 'There was an error. Please try again.' unless employee.save!
+        unless employee.save!
+          redirect_to admin_employee_kudos_for_all_path(Employee),
+                      notice: 'There was an error. Please try again.'
+        end
       end
       redirect_to admin_employees_path, notice: 'Number of available Kudos was successfully added to Employees.'
     end
