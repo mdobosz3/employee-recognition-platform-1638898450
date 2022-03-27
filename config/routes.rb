@@ -17,8 +17,8 @@ Rails.application.routes.draw do
     resources :rewards
     resources :orders, only: %i[index update]
     resources :employees, only: %i[index] do
-      get "kudos_for_all"
-      patch "add_kudos_for_all"
+      get 'kudos_for_all'
+      patch 'add_kudos_for_all'
     end
   end
 end
