@@ -51,8 +51,8 @@ RSpec.describe 'Kudo check', type: :system do
     visit admin_root_path
     click_link 'Employees'
 
-    expect(page).to have_content '199'
-    expect(page).to have_content '533'
+    expect(page).to have_content employee1.number_of_available_kudos
+    expect(page).to have_content employee2.number_of_available_kudos
     click_link 'Add Kudos'
     click_button 'Add'
     expect(page).to have_content '209'

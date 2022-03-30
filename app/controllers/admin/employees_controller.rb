@@ -7,14 +7,14 @@ module Admin
     end
 
     def kudos_for_all
-      render :add_kudos_for_all, locals: { employees: Employee }
+      render :add_kudos_for_all, locals: { employees: Employee.all }
     end
 
     def add_kudos_for_all
       Employee.all.each do |employee|
         employee.number_of_available_kudos += add_kudos
         unless employee.save!
-          redirect_to admin_employee_kudos_for_all_path(Employee),
+          redirect_to kudos_for_all_admin_employees_path,
                       notice: 'There was an error. Please try again.'
         end
       end
