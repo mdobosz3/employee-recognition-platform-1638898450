@@ -11,14 +11,18 @@ module Admin
     end
 
     def add_kudos_for_all
-      Employee.all.each do |employee|
-        employee.number_of_available_kudos += add_kudos
-        unless employee.save!
-          redirect_to kudos_for_all_admin_employees_path,
-                      notice: 'There was an error. Please try again.'
+      if add_kudos >= 1 && add_kudos <= 20
+        Employee.all.each do |employee|
+          employee.number_of_available_kudos += add_kudos
+          unless employee.save!
+            redirect_to kudos_for_all_admin_employees_path,
+                        notice: 'There was an error. Please try again.'
+          end
         end
+        redirect_to admin_employees_path, notice: 'Number of available Kudos was successfully added to Employees.'
+      else
+        redirect_to kudos_for_all_admin_employees_path, notice: 'Enter a number between 1 and 20.'
       end
-      redirect_to admin_employees_path, notice: 'Number of available Kudos was successfully added to Employees.'
     end
 
     private
