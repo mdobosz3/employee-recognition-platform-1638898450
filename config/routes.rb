@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       collection do
         get 'kudos_for_all'
         patch 'add_kudos_for_all'
-      end  
+      end
     end
   end
 end

@@ -25,7 +25,10 @@ class KudosController < ApplicationController
   end
 
   def create
-    redirect_to kudos_path, notice: 'You have no kudos available to give.' unless current_employee.number_of_available_kudos > 1
+    unless current_employee.number_of_available_kudos >= 1
+      redirect_to kudos_path,
+                  notice: 'You have no kudos available to give.' && return
+    end
     kudo = Kudo.new(kudo_params)
     kudo.giver = current_employee
     if kudo.save
