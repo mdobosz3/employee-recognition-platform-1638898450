@@ -1,0 +1,22 @@
+<h1>All Employees</h1>
+<div class="d-flex justify-content-center">
+  <table class="table table-borderless table-responsive table-hover shadow card-1 w-auto">
+    <thead>
+      <tr class="text-center", id="table__header">
+      <th>Email</th>
+      <th>Available kudos</th>
+      <th>Kudo point</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% employees.each do |employee| %>
+      <tr class="border-bottom">
+        <td><%= employee.email %></td>
+        <td class="text-center"><%= employee.number_of_available_kudos %></td>
+        <td class="text-center"><%= employee.kudo_points %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

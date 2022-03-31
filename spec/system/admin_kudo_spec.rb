@@ -7,8 +7,8 @@ RSpec.describe 'Kudo check', type: :system do
     driven_by(:rack_test)
   end
 
-  let!(:employee1) { create(:employee) }
-  let!(:employee2) { create(:employee) }
+  let!(:employee1) { create(:employee, number_of_available_kudos: 199) }
+  let!(:employee2) { create(:employee, number_of_available_kudos: 533) }
   let!(:admin_user) { create(:admin_user) }
   let!(:company_value1) { create(:company_value) }
   let!(:company_value2) { create(:company_value) }
@@ -44,5 +44,18 @@ RSpec.describe 'Kudo check', type: :system do
     expect(page).to have_content 'Kudo was successfully destroyed.'
     expect(page).to have_content 'All Kudos'
     expect(page).not_to have_content 'title test edit'
+  end
+
+  it 'add available kudos to employees' do
+    login_as(admin_user)
+    visit admin_root_path
+    click_link 'Employees'
+
+    expect(page).to have_content employee1.number_of_available_kudos
+    expect(page).to have_content employee2.number_of_available_kudos
+    click_link 'Add Kudos'
+    click_button 'Add'
+    expect(page).to have_content '209'
+    expect(page).to have_content '543'
   end
 end
