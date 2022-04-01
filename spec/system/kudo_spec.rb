@@ -36,8 +36,8 @@ RSpec.describe 'Kudo check', type: :system do
     within('[data-test-id="Kudo_Points"]') do
       expect(page).to have_content '1'
     end
-    
-    #checking the creation of a new kudo with no minimum points
+
+    # checking the creation of a new kudo with no minimum points
     click_link 'New Kudo'
     expect(page).to have_content 'You have no kudos available to give.'
 
@@ -50,13 +50,13 @@ RSpec.describe 'Kudo check', type: :system do
     expect(page).to have_content 'title test edit'
     expect(page).to have_content company_value2.title
 
-    #checking for kudo editing after 5 minutes
+    # checking for kudo editing after 5 minutes
     travel 6.minutes do
       visit current_path
       expect(page).not_to have_link 'Edit'
       expect(page).not_to have_link 'Delete'
     end
-    
+
     visit current_path
     click_link 'Delete'
     expect(page).to have_content 'Kudos was successfully destroyed.'

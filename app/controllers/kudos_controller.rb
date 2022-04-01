@@ -35,7 +35,8 @@ class KudosController < ApplicationController
     if kudo.save
       current_employee.number_of_available_kudos -= 1
       current_employee.save
-      redirect_to kudos_path, notice: 'Kudos was successfully created. If you want to change something, you have 5 minutes to edit your kudo.'
+      redirect_to kudos_path,
+                  notice: 'Kudos was successfully created. If you want to change something, you have 5 minutes to edit your kudo.'
     else
       render :new, locals: { kudo: kudo }
     end

@@ -1,15 +1,15 @@
-class KudoPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class KudoPolicy < ApplicationPolicy
   def edit?
     update?
   end
 
   def update?
-    Time.now - record.created_at < 5.minutes
+    Time.zone.now - record.created_at < 5.minutes
   end
 
   def destroy?
     update?
   end
-
-  end
+end
