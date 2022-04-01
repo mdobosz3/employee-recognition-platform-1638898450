@@ -21,8 +21,10 @@
           <td class="text-center"><%= kudo.company_value.title %></td>
           <% if kudo.giver == current_employee %>
           <td class="btn-group">
+          <% if policy(kudo).update? %>
             <%= link_to ' Edit', edit_kudo_path(kudo), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
             <%= link_to ' Delete', kudo_path(kudo), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-trash2" %>
+          <% end %>
           </td>
           <% else %>
           <td></td>
