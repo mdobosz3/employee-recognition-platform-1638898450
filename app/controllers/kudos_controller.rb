@@ -21,6 +21,7 @@ class KudosController < ApplicationController
   end
 
   def edit
+    authorize kudo
     render :edit, locals: { kudo: kudo }
   end
 
@@ -34,13 +35,15 @@ class KudosController < ApplicationController
     if kudo.save
       current_employee.number_of_available_kudos -= 1
       current_employee.save
-      redirect_to kudos_path, notice: 'Kudos was successfully created.'
+      redirect_to kudos_path,
+                  notice: 'Kudos was successfully created. If you want to change something, you have 5 minutes to edit your kudo.'
     else
       render :new, locals: { kudo: kudo }
     end
   end
 
   def update
+    authorize kudo
     if kudo.update(kudo_params)
       redirect_to kudos_path, notice: 'Kudos was successfully updated.'
     else
@@ -49,6 +52,7 @@ class KudosController < ApplicationController
   end
 
   def destroy
+    authorize kudo
     kudo.destroy
     redirect_to kudos_url, notice: 'Kudos was successfully destroyed.'
   end
