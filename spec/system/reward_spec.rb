@@ -37,7 +37,7 @@ RSpec.describe 'Reward check', type: :system do
       create_list(:reward, 18)
       visit current_path
 
-      expect(page).not_to have_content Reward.last.title 
+      expect(page).not_to have_content Reward.last.title
       expect(page).not_to have_content Reward.last.price
       within('[data-test-id="page_last"]') do
         click_link '2'

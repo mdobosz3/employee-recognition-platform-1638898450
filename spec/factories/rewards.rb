@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :reward do
     title { Faker::JapaneseMedia::DragonBall.character }
     description { Faker::Creature::Animal.name }
-    sequence(:price) { |n| "#{n}" }
+    sequence(:price, &:to_s)
   end
 end
