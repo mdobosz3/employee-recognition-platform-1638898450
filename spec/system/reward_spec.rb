@@ -11,17 +11,6 @@ RSpec.describe 'Reward check', type: :system do
     let(:employee) { create(:employee) }
     let!(:reward) { create(:reward) }
 
-    let!(:reward1) { create(:reward) }
-    let!(:reward2) { create(:reward) }
-    let!(:reward3) { create(:reward) }
-    let!(:reward4) { create(:reward) }
-    let!(:reward5) { create(:reward) }
-    let!(:reward6) { create(:reward) }
-    let!(:reward7) { create(:reward) }
-    let!(:reward8) { create(:reward) }
-    let!(:reward9) { create(:reward) }
-    let!(:reward10) { create(:reward, price: 3) }
-
     before do
       sign_in employee
       visit root_path
@@ -45,13 +34,16 @@ RSpec.describe 'Reward check', type: :system do
     end
 
     it 'Pagination check' do
-      expect(page).not_to have_content reward10.title
-      expect(page).not_to have_content reward10.price
+      create_list(:reward, 18)
+      visit current_path
+
+      expect(page).not_to have_content Reward.last.title 
+      expect(page).not_to have_content Reward.last.price
       within('[data-test-id="page_last"]') do
         click_link '2'
       end
-      expect(page).to have_content reward10.title
-      expect(page).to have_content reward10.price
+      expect(page).to have_content Reward.last.title
+      expect(page).to have_content Reward.last.price
     end
   end
 end

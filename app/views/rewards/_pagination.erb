@@ -8,16 +8,16 @@
     <%end%>
 
     <% (@page).times do |page|%>
-       <li class="page-item", data-test-id="page_first"><%= link_to page+1, rewards_path(page: page), class: "page-link" %></li>
+       <li class="page-item", data-test-id="page_first"><%= link_to page + 1, rewards_path(page: page), class: "page-link" %></li>
     <% end %>
     <li class="page-item active"><%= link_to @page+1, rewards_path(page: @page), class: "page-link" %></li>
-    <% (@page+1..@number_of_page).each do |page|%>
-       <li class="page-item", data-test-id="page_last"><%= link_to page+1, rewards_path(page: page), class: "page-link" %></li>
+    <% (@page + 1..@number_of_pages).each do |page|%>
+       <li class="page-item", data-test-id="page_last"><%= link_to page + 1, rewards_path(page: page), class: "page-link" %></li>
     <% end %>
 
-    <% if @page < @number_of_page %>
-      <li class="page-item"><%= link_to ">", rewards_path(page: @page +1), class: "page-link" %></li>
-      <li class="page-item"><%= link_to ">>", rewards_path(page: @number_of_page), class: "page-link" %></li>
+    <% if @page < @number_of_pages %>
+      <li class="page-item"><%= link_to ">", rewards_path(page: @page + 1), class: "page-link" %></li>
+      <li class="page-item"><%= link_to ">>", rewards_path(page: @number_of_pages), class: "page-link" %></li>
     <%else%>
       <li class="page-item disabled"><a class="page-link">></a></li>
       <li class="page-item disabled"><a class="page-link">>></a></li>
