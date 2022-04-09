@@ -36,7 +36,7 @@ RSpec/MultipleExpectations:
       - spec/**/*
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 12
+  Max: 6
 
 RSpec/LetSetup:
   Exclude:
