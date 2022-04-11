@@ -12,19 +12,16 @@ RSpec.describe 'CRUD category', type: :system do
     let!(:reward) { create(:reward) }
     let!(:category) { build(:category) }
 
-
-
     it 'CRUD category' do
       login_as(admin_user)
       visit admin_root_path
-    
+
       click_link 'Categories'
       click_link 'New Category'
       fill_in 'Title', with: category.title
       click_button 'Create Category'
       expect(page).to have_content 'Category was successfully created.'
       expect(page).to have_content category.title
-
 
       click_link 'Rewards'
       click_link 'Edit'
