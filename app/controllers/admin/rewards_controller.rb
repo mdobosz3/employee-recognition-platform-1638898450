@@ -6,6 +6,10 @@ module Admin
       render :index, locals: { rewards: Reward.all }
     end
 
+    def show
+      render :show, locals: { reward: reward_find }
+    end
+
     def new
       render :new, locals: { reward: Reward.new }
     end
@@ -43,7 +47,7 @@ module Admin
     end
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price)
+      params.require(:reward).permit(:title, :description, :price, category_ids: [])
     end
   end
 end
