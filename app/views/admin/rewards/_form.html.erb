@@ -25,7 +25,15 @@
   </div>
   <div class="field">
     <%= form.label :category_id %>
-    <%= form.collection_check_boxes :category_ids, Category.all, :id, :title %>
+    </br>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :title do |check_box| %>
+      <div class="form-check">
+        <%= check_box.label class: 'form-check-label' do %>
+          <%= check_box.check_box class: 'form-check-input' %>
+          <%= check_box.object.title %>
+      </div>
+        <% end %>
+    <% end %>
   </div>
 <br>
   <div class="actions">
