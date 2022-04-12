@@ -1,4 +1,4 @@
-<h1>All Categories</h1>
+<h1>Categories</h1>
 <div class="d-flex justify-content-center">
   <table class="table table-borderless table-responsive table-hover shadow card-1 w-auto">
   <thead>
@@ -14,7 +14,9 @@
         <td><%= category.title %></td>
         <td class="btn-group">
           <%= link_to ' Edit', edit_admin_category_path(category), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
-          <%= link_to ' Delete', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-trash2" %></td>
+          <% unless category.rewards.exists?%>
+            <%= link_to ' Delete', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-trash2" %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

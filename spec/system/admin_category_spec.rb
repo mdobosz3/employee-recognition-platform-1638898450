@@ -11,6 +11,7 @@ RSpec.describe 'CRUD category', type: :system do
     let!(:admin_user) { create(:admin_user) }
     let!(:reward) { create(:reward) }
     let!(:category) { build(:category) }
+    let!(:category1) { create(:category) }
 
     it 'CRUD category' do
       login_as(admin_user)
@@ -23,33 +24,39 @@ RSpec.describe 'CRUD category', type: :system do
       expect(page).to have_content 'Category was successfully created.'
       expect(page).to have_content category.title
 
-      click_link 'Rewards'
-      click_link 'Edit'
-      expect(page).to have_unchecked_field(category.title)
-      check category.title
-      click_button 'Update Reward'
-      expect(page).to have_content 'Reward was successfully updated.'
-
-      click_link 'Categories'
-      click_link 'Delete'
-      expect(page).to have_content 'The category cannot be deleted. It is assigned to the reward.'
-
-      click_link 'Rewards'
-      click_link 'Edit'
-      expect(page).to have_checked_field(category.title)
-      uncheck category.title
-      click_button 'Update Reward'
-      expect(page).to have_content 'Reward was successfully updated.'
-
-      click_link 'Categories'
-      click_link 'Edit'
+      click_link 'Edit', match: :first
       fill_in 'Title', with: 'title test edit'
       click_button 'Update Category'
       expect(page).to have_content 'Category was successfully updated.'
       expect(page).to have_content 'title test edit'
 
-      click_link 'Delete'
+      click_link 'Delete', match: :first
       expect(page).to have_content 'Category was successfully destroyed.'
+    end
+
+    it 'when the category is assigned to the reward' do
+      login_as(admin_user)
+      visit admin_root_path
+
+      click_link 'Rewards'
+      click_link 'Edit'
+      expect(page).to have_unchecked_field(category1.title)
+      check category1.title
+      click_button 'Update Reward'
+      expect(page).to have_content 'Reward was successfully updated.'
+
+      click_link 'Categories'
+      expect(page).not_to have_content 'Delete'
+
+      click_link 'Rewards'
+      click_link 'Edit'
+      expect(page).to have_checked_field(category1.title)
+      uncheck category1.title
+      click_button 'Update Reward'
+      expect(page).to have_content 'Reward was successfully updated.'
+
+      click_link 'Categories'
+      expect(page).to have_content 'Delete'
     end
   end
 end

@@ -7,7 +7,7 @@ module Admin
     end
 
     def show
-      render :show, locals: { reward: reward_find }
+      render :show, locals: { reward: reward }
     end
 
     def new
@@ -15,7 +15,7 @@ module Admin
     end
 
     def edit
-      render :edit, locals: { reward: reward_find }
+      render :edit, locals: { reward: reward }
     end
 
     def create
@@ -28,22 +28,22 @@ module Admin
     end
 
     def update
-      if reward_find.update(reward_params)
-        redirect_to admin_rewards_path(reward_find), notice: 'Reward was successfully updated.'
+      if reward.update(reward_params)
+        redirect_to admin_rewards_path(reward), notice: 'Reward was successfully updated.'
       else
-        render :edit, locals: { reward: reward_find }
+        render :edit, locals: { reward: reward }
       end
     end
 
     def destroy
-      reward_find.destroy
+      reward.destroy
       redirect_to admin_rewards_url, notice: 'Reward was successfully destroyed.'
     end
 
     private
 
-    def reward_find
-      @reward_find ||= Reward.find(params[:id])
+    def reward
+      @reward ||= Reward.find(params[:id])
     end
 
     def reward_params

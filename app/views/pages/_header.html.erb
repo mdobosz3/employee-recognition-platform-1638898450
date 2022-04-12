@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark shadow" style="background-color: #242582;">
+<nav class="navbar sticky-top navbar-expand-md navbar-dark shadow" style="background-color: #242582;">
   <div class="container">
     <i>
       <%= link_to "ERP", root_path, class:"navbar-brand h1" %>
@@ -18,7 +18,7 @@
     <ul class="nav navbar-nav w-100 justify-content-end">
       <li class="nav-item">
         <span class="btn btn-warning active btn-sm">Available kudos: <%= current_employee.number_of_available_kudos%></span>
-      </li>
+      </li>.
       <li class="nav-item">
         <span class="btn btn-warning active btn-sm bi bi-award", data-test-id="Kudo_Points"><%=current_employee.kudo_points%></span>
         <%= link_to ' Log Out', destroy_employee_session_path, method: :delete, class: "btn btn-outline-warning btn-sm bi bi-box-arrow-right" %>
