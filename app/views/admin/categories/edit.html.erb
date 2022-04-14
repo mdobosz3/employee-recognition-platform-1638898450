@@ -1,0 +1,8 @@
+<h1>Editing Cetegory</h1>
+
+<%= render 'form', category: category %>
+<br>
+<%= link_to 'Back', admin_categories_path, class:"btn btn-dark" %> |
+<% unless category.rewards.exists?%>
+  <%= link_to ' Delete', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-trash2" %></td>
+<% end %>

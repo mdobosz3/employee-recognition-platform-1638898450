@@ -1,0 +1,14 @@
+<h2>Reward</h2>
+
+Title: <%= reward.title %><br>
+Description: <%= reward.description %><br>
+Price: <%= reward.price %><br>
+Categories:
+    <ul>
+    <% reward.categories.each do |category| %>
+    <li><%= category.title %></li>
+    <% end %>
+    </ul>
+<br>
+<%= link_to 'Edit', edit_admin_reward_path(reward), class:"btn btn-secondary btn-sm" %> |
+<%= link_to 'Back', admin_rewards_path, class:"btn btn-secondary btn-sm" %>

@@ -22,8 +22,8 @@
 }
 
 table tr#table__header th {
-    background:#f0ad4e; color:rgb(255,255,255); font-weight: normal;
-    box-shadow:#f0ad4e 2px 2px 10px;
+    background:#ffcd38; color:rgb(255,255,255); font-weight: normal;
+    box-shadow:#ffcd38 2px 2px 10px;
 }
 
 table tr#table__header th:first-child, table tr.shadoww td {

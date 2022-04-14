@@ -1,18 +1,18 @@
 <h1>Orders</h1>
 
-  <%= link_to "Delivered", orders_path(status: 'delivered'), class: "btn btn-outline-dark btn-sm me-2" %>
-  <%= link_to "Not delivered", orders_path(status: 'not_delivered'), class: "btn btn-outline-dark btn-sm me-2" %>  
-  <%= link_to "All orders", orders_path, class: "btn btn-outline-dark btn-sm me-2" %>
+  <%= link_to "Delivered", orders_path(status: 'delivered'), class: "btn btn-outline-secondary btn-sm me-2" %>
+  <%= link_to "Not delivered", orders_path(status: 'not_delivered'), class: "btn btn-outline-secondary btn-sm me-2" %>  
+  <%= link_to "All orders", orders_path, class: "btn btn-outline-secondary btn-sm me-2" %>
 <br>
 <br>
 <div class="d-flex justify-content-center">
-  <table class="table table-borderless table-responsive table-hover shadow card-1">
+  <table class="table table-borderless table-responsive table-hover shadow card-1 w-auto">
     <thead>
       <tr class="text-center", id="table__header">
       <th class="align-middle">Title</th>
-      <th class="align-middle w-50">Description</th>
+      <th class="align-middle">Description</th>
       <th class="align-middle">Price</th>
-      <th class="align-middle">Purchase time</th>
+      <th style="width: 15%", class="align-middle">Purchase time</th>
     </tr>
   </thead>
 

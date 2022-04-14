@@ -1,0 +1,26 @@
+<h1>Categories</h1>
+<div class="d-flex justify-content-center">
+  <table class="table table-borderless table-responsive table-hover shadow card-1 w-auto">
+  <thead>
+    <tr class="text-center", id="table__header">
+      <th>Title</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% categories.each do |category| %>
+      <tr class="border-bottom">
+        <td><%= category.title %></td>
+        <td class="btn-group">
+          <%= link_to ' Edit', edit_admin_category_path(category), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
+          <% unless category.rewards.exists?%>
+            <%= link_to ' Delete', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-trash2" %></td>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+<%= link_to ' New Category', new_admin_category_path, class:"btn btn-secondary bi bi-file-earmark-plus" %>

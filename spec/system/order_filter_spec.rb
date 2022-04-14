@@ -20,7 +20,7 @@ RSpec.describe 'Order filtering', type: :system do
       expect(page).to have_content delivered_order.reward.description
       expect(page).to have_content not_delivered_order.reward.description
 
-      click_link 'Deliver', match: :first
+      click_link 'Delivered', match: :first
       expect(page).to have_content delivered_order.reward.description
       expect(page).not_to have_content not_delivered_order.reward.description
 

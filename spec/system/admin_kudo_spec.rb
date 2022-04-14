@@ -42,7 +42,7 @@ RSpec.describe 'Kudo check', type: :system do
 
     click_link 'Delete'
     expect(page).to have_content 'Kudo was successfully destroyed.'
-    expect(page).to have_content 'All Kudos'
+    expect(page).to have_content 'Kudos'
     expect(page).not_to have_content 'title test edit'
   end
 
