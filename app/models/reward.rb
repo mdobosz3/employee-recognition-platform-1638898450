@@ -10,5 +10,5 @@ class Reward < ApplicationRecord
   has_many :category_rewards, dependent: :destroy
   has_many :categories, through: :category_rewards
 
-  scope :filter_by_category, ->(category_ids_arr) { joins(:categories).where( categories: { id: category_ids_arr })}
+  scope :filter_by_category, ->(category_ids_arr) { joins(:categories).where(categories: { id: category_ids_arr }) }
 end

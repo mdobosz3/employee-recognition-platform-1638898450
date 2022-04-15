@@ -13,6 +13,7 @@ AllCops:
 Layout/LineLength:
   Max: 130
   Exclude:
+    - app/controllers/rewards_controller.rb
     - config/**/*
 
 Metrics/BlockLength:
