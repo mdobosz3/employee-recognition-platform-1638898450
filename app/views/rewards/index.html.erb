@@ -1,7 +1,7 @@
 <h1>Rewards</h1>
 <%= form_with url: rewards_path, method: :get do |form| %>
 <%= form.label :category_id %><br>
-<%= form.collection_select( :category_ids_arr, Category.all, :id, :title, prompt: 'All Category') %>
+<%= form.collection_select( :category_id, Category.all, :id, :title, prompt: 'All Category') %>
 <%= form.submit "Filter" %>
 <%end%>
 <div class="d-flex justify-content-center">
@@ -33,5 +33,4 @@
     </tbody>
   </table>
 </div>
-
 <%= render 'pagination' %>
