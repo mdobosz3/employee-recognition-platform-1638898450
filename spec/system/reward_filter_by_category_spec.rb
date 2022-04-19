@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Reward filtering by category', type: :system do
-
   context 'when an employee filters reward' do
     let!(:employee) { create(:employee) }
     let!(:category_reward1) { create(:category_reward) }
