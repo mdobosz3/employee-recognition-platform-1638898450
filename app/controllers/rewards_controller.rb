@@ -5,11 +5,20 @@ class RewardsController < ApplicationController
 
   def index
     @page = params.fetch(:page, 0).to_i
-    @number_of_pages = (Reward.count / REWARDS_PER_PAGE).ceil
-    if params[:page].to_i <= @number_of_pages
-      render :index, locals: { rewards: Reward.offset(@page * REWARDS_PER_PAGE).limit(REWARDS_PER_PAGE) }
+    if params[:category_id].to_i.positive?
+      @number_of_pages = (RewardSearch.new(params).results.count / REWARDS_PER_PAGE).ceil
+      if params[:page].to_i <= @number_of_pages
+        render :index, locals: { rewards: RewardSearch.new(params).results.offset(@page * REWARDS_PER_PAGE).limit(REWARDS_PER_PAGE) }
+      else
+        redirect_to rewards_path, notice: "Enter page in range 1 to #{@number_of_pages + 1}."
+      end
     else
-      redirect_to rewards_path, notice: "Enter page in range 1 to #{@number_of_pages + 1}."
+      @number_of_pages = (RewardSearch.new.results.count / REWARDS_PER_PAGE).ceil
+      if params[:page].to_i <= @number_of_pages
+        render :index, locals: { rewards: RewardSearch.new.results.offset(@page * REWARDS_PER_PAGE).limit(REWARDS_PER_PAGE) }
+      else
+        redirect_to rewards_path, notice: "Enter page in range 1 to #{@number_of_pages + 1}."
+      end
     end
   end
 

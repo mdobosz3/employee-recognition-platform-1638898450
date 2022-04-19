@@ -1,9 +1,15 @@
 <h1>Rewards</h1>
+<%= form_with url: rewards_path, method: :get do |form| %>
+<%= form.label :category_id %><br>
+<%= form.collection_select( :category_id, Category.all, :id, :title, prompt: 'All Category') %>
+<%= form.submit "Filter" %>
+<%end%>
 <div class="d-flex justify-content-center">
   <table class="table table-borderless table-responsive table-hover shadow card-1 w-auto">
     <thead>
       <tr class="text-center", id="table__header">
         <th>Title</th>
+        <th>Category</th>
         <th>Price</th>
         <th>Action</th>
       </tr>
@@ -12,6 +18,11 @@
       <% rewards.each do |reward| %>
         <tr class="border-bottom">
           <td><%= reward.title %></td>
+          <td>
+            <% reward.categories.each do |category| %>
+            <%= category.title %>
+            <% end %>
+          </td>
           <td style="text-align: center"><%= reward.price %></td>
           <td class="btn-group">
             <%= link_to ' Show', reward_path(reward), class:"bi bi-eye btn btn-outline-secondary btn-sm" %>
@@ -22,5 +33,4 @@
     </tbody>
   </table>
 </div>
-
 <%= render 'pagination' %>
