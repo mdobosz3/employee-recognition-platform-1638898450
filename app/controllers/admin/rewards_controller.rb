@@ -47,7 +47,7 @@ module Admin
     end
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, category_ids: [])
+      params.require(:reward).permit(:title, :description, :price, :photo, category_ids: [])
     end
   end
 end
