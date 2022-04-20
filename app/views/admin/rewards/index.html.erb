@@ -5,6 +5,7 @@
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
+      <th>Photo</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -12,9 +13,14 @@
   <tbody>
     <% rewards.each do |reward| %>
       <tr>
-        <td><%= reward.title %></td>
-        <td><%= reward.description %></td>
-        <td><%= reward.price %></td>
+        <td style="vertical-align:middle"><%= reward.title %></td>
+        <td style="vertical-align:middle"><%= reward.description %></td>
+        <td style="text-align: center; vertical-align:middle"><%= reward.price %></td>
+        <td style="text-align: center">
+          <% if reward.photo.persisted?%>
+            <%= image_tag reward.photo, width: '50px' %>
+          <%end%>
+        </td>
         <td class="btn-group">
         <%= link_to ' Edit', edit_admin_reward_path(reward), 
         class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>

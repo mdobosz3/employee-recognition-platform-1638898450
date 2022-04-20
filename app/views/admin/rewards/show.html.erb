@@ -9,7 +9,10 @@ Categories:
     <li><%= category.title %></li>
     <% end %>
     </ul>
-Photo: <%= image_tag reward.photo, width: '240px' %><br>
+Photo: 
+    <% if reward.photo.persisted?%>
+        <%= image_tag reward.photo, width: '240px' %><br>
+    <%end%>
 <br>
 <%= link_to 'Edit', edit_admin_reward_path(reward), class:"btn btn-secondary btn-sm" %> |
 <%= link_to 'Back', admin_rewards_path, class:"btn btn-secondary btn-sm" %>
