@@ -7,18 +7,22 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 1.upto(5) do |i|
-  employee = Employee.create(email: "test#{i}@test.com", password: "password")
+  employee = Employee.where(email: "test#{i}@test.com").first_or_create!(password: "password")
 end
 
-AdminUser.create(email: "admin@admin.com", password: "password")
+AdminUser.where(email: "admin@admin.com").first_or_create!(password: "password")
 
 1.upto(4) do |i|
-  kudo = Kudo.create(title: Faker::Beer.style, content: Faker::Coffee.notes, giver_id: "#{i}", receiver_id: "#{i+1}", company_value: CompanyValue.all.sample)
+  kudo = Kudo.where(title: Faker::Beer.style).first_or_create!(content: Faker::Coffee.notes, giver_id: "#{i}", receiver_id: "#{i+1}", company_value: CompanyValue.all.sample)
 end
 
-CompanyValue.create(title: "Patient")
-CompanyValue.create(title: "Helpful")
+CompanyValue.where(title: "Patient").first_or_create!
+CompanyValue.where(title: "Helpful").first_or_create!
 
 1.upto(15) do |i|
-  Reward.create(title: Faker::JapaneseMedia::DragonBall.character, description: Faker::Movies::Hobbit.quote, price: "#{i}")
+  Reward.where(title: Faker::JapaneseMedia::DragonBall.character).first_or_create!(description: Faker::Movies::Hobbit.quote, price: "#{i}")
+end
+
+1.upto(3) do |x|
+  Category.where(title: Faker::Games::Heroes.klass).first_or_create!
 end
