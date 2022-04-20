@@ -7,6 +7,11 @@
     <h5 class="card-title">Description</h5>
     <p class="card-text"><%= reward.description %><p>
     Price: <%= reward.price %><br>
+    <div class="text-center">
+      <% if reward.photo.persisted?%>
+        <%= image_tag reward.photo, width: '240px' %>
+      <%end%>
+    </div>
     <br>
     <%= link_to 'Back', rewards_path, class:"btn btn-secondary btn-sm" %>
   </div>
