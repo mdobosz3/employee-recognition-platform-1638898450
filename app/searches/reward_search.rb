@@ -2,7 +2,7 @@
 
 class RewardSearch < Searchlight::Search
   def base_query
-    Reward.includes(:categories, :category_rewards).all
+    Reward.includes(photo_attachment: :blob).all
   end
 
   def search_category_id
