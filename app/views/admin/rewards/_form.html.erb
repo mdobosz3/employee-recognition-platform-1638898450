@@ -35,6 +35,10 @@
         <% end %>
     <% end %>
   </div>
+  <div class="field form-group">
+    <%= form.label :photo %><br>
+    <%= form.file_field :photo, class:"form-control" %>
+  </div>
 <br>
   <div class="actions">
     <%= form.submit %>
