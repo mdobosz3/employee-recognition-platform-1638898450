@@ -1,18 +1,28 @@
 <h2>Reward</h2>
+<div class="card shadow w-50 mx-auto">
+  <div class="card-header text-center", style="background-color:#ffcd38;">
+    <h5 class="mt-2", style="color:#ffffff;"><%= reward.title %></h5>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Description</h5>
+    <p class="card-text"><%= reward.description %><p>
 
-Title: <%= reward.title %><br>
-Description: <%= reward.description %><br>
-Price: <%= reward.price %><br>
-Categories:
+    Price: <%= reward.price %><br>
+
+    Categories:
     <ul>
-    <% reward.categories.each do |category| %>
-    <li><%= category.title %></li>
-    <% end %>
+        <% reward.categories.each do |category| %>
+            <li><%= category.title %></li>
+        <% end %>
     </ul>
-Photo: 
-    <% if reward.photo.persisted?%>
-        <%= image_tag reward.photo, width: '240px' %><br>
-    <%end%>
-<br>
-<%= link_to 'Edit', edit_admin_reward_path(reward), class:"btn btn-secondary btn-sm" %> |
-<%= link_to 'Back', admin_rewards_path, class:"btn btn-secondary btn-sm" %>
+
+    <div class="text-center">
+      <% if reward.photo.persisted?%>
+        <%= image_tag reward.photo, width: '240px' %>
+      <%end%>
+    </div>
+    <br>
+    <%= link_to 'Edit', edit_admin_reward_path(reward), class:"btn btn-secondary btn-sm" %> |
+    <%= link_to 'Back', admin_rewards_path, class:"btn btn-secondary btn-sm" %>
+  </div>
+</div>
