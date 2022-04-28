@@ -3,7 +3,17 @@
 module Admin
   class OrdersController < AdminController
     def index
-      render :index, locals: { orders: Order.includes(:employee).all.order(:status) }
+      respond_to do |format|
+        format.html do
+          render :index, locals: { orders: Order.includes(:employee).all.order(:status) }
+        end
+        format.csv do
+          response.headers['Content-Type'] = 'text/csv'
+          response.headers['Content-Disposition'] = "attachment; filename=Orders-#{Time.zone.today}.csv"
+          render template: 'admin/orders/export', handlers: [:erb], formats: [:csv],
+                 locals: { orders: Order.includes(:employee).all.order(:status) }
+        end
+      end
     end
 
     def update
