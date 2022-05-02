@@ -10,7 +10,8 @@ module Admin
       if Reward.import(params[:file])
         redirect_to admin_rewards_path, notice: 'Rewards was successfully imported.'
       else
-        redirect_to admin_rewards_path, notice: 'Rewards were not imported. Check the data entered in the "slug" column and try again.'
+        redirect_to admin_rewards_path,
+                    notice: 'Rewards were not imported. Check the data entered in the "slug" column and try again.'
       end
     end
 
