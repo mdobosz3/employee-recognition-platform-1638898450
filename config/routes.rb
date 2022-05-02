@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     root to: 'pages#dashboard'
     resources :kudos
     resources :company_values
-    resources :rewards
+    resources :rewards do
+      collection { post :import }
+    end
     resources :categories
     resources :category_rewards
     resources :orders, only: %i[index update]
