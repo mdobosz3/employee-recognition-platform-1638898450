@@ -33,3 +33,12 @@
   </tbody>
 </table>
 <%= link_to '<i class="bi bi-file-earmark-plus"> </i>New Reward'.html_safe, new_admin_reward_path, class:"btn btn-secondary" %>
+
+<%= form_tag import_admin_rewards_path, multipart: true, class: "form-inline" do %>
+<div class="field form-group">
+  <%= file_field_tag :file, class:"form-control" %>
+</div>
+<div class="form_group">
+  <%= submit_tag "import CSV"%>
+</div>
+<% end %>
