@@ -29,6 +29,7 @@ module Admin
 
     def create
       reward = Reward.new(reward_params)
+      reward.slug = reward.title.parameterize
       if reward.save
         redirect_to admin_rewards_path(reward), notice: 'Reward was successfully created.'
       else
@@ -37,6 +38,7 @@ module Admin
     end
 
     def update
+      reward.slug = reward_params[:title].parameterize
       if reward.update(reward_params)
         redirect_to admin_rewards_path(reward), notice: 'Reward was successfully updated.'
       else

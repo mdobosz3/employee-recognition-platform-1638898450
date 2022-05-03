@@ -17,11 +17,9 @@ class Reward < ApplicationRecord
     ActiveRecord::Base.transaction do
       CSV.foreach(file.path, headers: true) do |row|
         if row[3].nil?
-          Reward.create_with(description: row[1], price: row[2]).find_or_create_by!(title: row[0])
+          Reward.create_with(description: row[1], price: row[2]).find_or_create_by!(title: row[0], slug: row[0].parameterize)
         else
-          title = row[3].split('-')
-          title[1] = -1 unless "#{title[0]}-" == 'reward-' && row[0] == title[1]
-          reward = Reward.find_by!(title: title[1])
+          reward = Reward.find_by!(slug: row[3])
           Reward.update(reward.id, row.to_h)
         end
       end
