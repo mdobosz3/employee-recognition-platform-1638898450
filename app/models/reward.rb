@@ -12,4 +12,16 @@ class Reward < ApplicationRecord
   has_many :categories, through: :category_rewards
 
   has_one_attached :photo
+
+  def self.import(file)
+    ActiveRecord::Base.transaction do
+      CSV.foreach(file.path, headers: true) do |row|
+        slug = row[3]
+        reward = Reward.find_by!(slug: slug)
+        Reward.update(reward.id, row.to_h)
+      end
+    end
+  rescue ActiveRecord::RecordNotFound, CSV::MalformedCSVError
+    false
+  end
 end

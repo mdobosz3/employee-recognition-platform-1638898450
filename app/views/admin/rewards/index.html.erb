@@ -1,4 +1,15 @@
 <h1>Rewards</h1>
+<div class="w-25">
+<%= form_tag import_admin_rewards_path, multipart: true, class: "form-inline" do %>
+<div class="field form-group">
+  <%= file_field_tag :file, class:"form-control" %>
+</div>
+<div class="form-group">
+  <%= submit_tag "import CSV"%>
+</div>
+<% end %>
+</div>
+<br>
 <table class="table table-striped table-bordered w-auto shadow-sm">
   <thead  class="table-success">
     <tr class="text-center">

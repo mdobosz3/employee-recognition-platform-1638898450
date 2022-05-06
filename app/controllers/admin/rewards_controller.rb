@@ -6,6 +6,15 @@ module Admin
       render :index, locals: { rewards: Reward.all }
     end
 
+    def import
+      if Reward.import(params[:file])
+        redirect_to admin_rewards_path, notice: 'Rewards was successfully imported.'
+      else
+        redirect_to admin_rewards_path,
+                    notice: 'Rewards were not imported. Check the data entered in the "slug" column and try again.'
+      end
+    end
+
     def show
       render :show, locals: { reward: reward }
     end
@@ -20,6 +29,7 @@ module Admin
 
     def create
       reward = Reward.new(reward_params)
+      reward.slug = reward.title.parameterize
       if reward.save
         redirect_to admin_rewards_path(reward), notice: 'Reward was successfully created.'
       else
@@ -28,6 +38,7 @@ module Admin
     end
 
     def update
+      reward.slug = reward_params[:title].parameterize
       if reward.update(reward_params)
         redirect_to admin_rewards_path(reward), notice: 'Reward was successfully updated.'
       else
