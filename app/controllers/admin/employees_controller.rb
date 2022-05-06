@@ -21,7 +21,7 @@ module Admin
             end
           end
         rescue ActiveRecord::RecordNotSaved => e
-          raise "Something go wrong. Please try again. #{e.message}"
+          render :new, notice: "Something go wrong. Please try again. #{e.message}"
         end
 
         redirect_to admin_employees_path, notice: 'Number of available Kudos was successfully added to Employees.'

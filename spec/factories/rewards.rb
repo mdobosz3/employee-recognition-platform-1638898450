@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :reward do
-    title { Faker::JapaneseMedia::DragonBall.character }
+    sequence(:title) { |i| "Faker::JapaneseMedia::DragonBall.character#{i}" }
     description { Faker::Creature::Animal.name }
     sequence(:price, &:to_s)
   end
