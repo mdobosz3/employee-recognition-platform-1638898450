@@ -16,12 +16,9 @@ class Reward < ApplicationRecord
   def self.import(file)
     ActiveRecord::Base.transaction do
       CSV.foreach(file.path, headers: true) do |row|
-        if row[3].nil?
-          Reward.create_with(description: row[1], price: row[2]).find_or_create_by!(title: row[0], slug: row[0].parameterize)
-        else
-          reward = Reward.find_by!(slug: row[3])
-          Reward.update(reward.id, row.to_h)
-        end
+        slug = row[3]
+        reward = Reward.find_by!(slug: slug)
+        Reward.update(reward.id, row.to_h)
       end
     end
   rescue ActiveRecord::RecordNotFound, CSV::MalformedCSVError
