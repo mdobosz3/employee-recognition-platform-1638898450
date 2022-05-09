@@ -1,0 +1,11 @@
+<h2>Employee</h2>
+
+<% if current_employee.first_name.nil? %>
+<%= link_to "Add your name", edit_employee_path(current_employee), class: "btn btn-warning btn-sm" %>
+<%else%>
+First name: <%= current_employee.first_name %>
+Last name: <%= current_employee.last_name %><br>
+<%end%><br>
+Email: <%= current_employee.email %><br>
+<br>
+<%= link_to 'Back', root_path, class:"btn btn-secondary btn-sm" %>
