@@ -1,0 +1,42 @@
+<%= form_with(model: [ :admin, employee ]) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+        <% employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :first_name %><br>
+    <%= form.text_field :first_name, class:"form-control" %>
+  </div>
+<br>
+  <div class="field form-group">
+    <%= form.label :last_name %><br>
+    <%= form.text_field :last_name, class:"form-control" %>
+  </div>
+<br>
+  <div class="field mb-3">
+    <%= form.label :number_of_available_kudos, class:"form-label" %>
+    <%= form.number_field :number_of_available_kudos, min: 0, class:"form-control"%>
+  </div>
+<br>
+  <div class="field form-group">
+    <%= form.label :email %><br>
+    <%= form.text_field :email, autofocus: true, class:"form-control" %>
+  </div>
+<br>
+  <div class="field form-group">
+    <%= form.label :password %><br>
+    <%= form.text_field :password, placeholder:"Enter new password, leave blank if you don't want to change it.", class:"form-control" %>
+  </div>
+<br>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
