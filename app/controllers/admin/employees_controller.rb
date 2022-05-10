@@ -12,10 +12,6 @@ module Admin
 
     def update
       params[:employee].compact_blank! if params[:employee][:password].blank?
-      
-      params[:employee][:first_name] = "test"
-      params[:employee][:last_name] = "test"
-      binding.pry
       if employee.update(employee_params)
         redirect_to admin_employees_path, notice: 'Employee was successfully updated.'
       else
@@ -59,7 +55,7 @@ module Admin
     end
 
     def employee_params
-      params.require(:employee).permit(:email, :password, :number_of_available_kudos)
+      params.require(:employee).permit(:first_name, :last_name, :email, :password, :number_of_available_kudos)
     end
 
     def add_kudos_param
