@@ -12,6 +12,8 @@ RSpec.describe 'Employee account', type: :system do
   it 'sign up and sign in' do
     visit root_path
     click_link 'Sign Up'
+    fill_in 'First name', with: employee_attributes[:first_name]
+    fill_in 'Last name', with: employee_attributes[:last_name]
     fill_in 'Email', with: employee_attributes[:email]
     fill_in 'Password', with: employee_attributes[:password]
     fill_in 'Password confirmation', with: employee_attributes[:password]

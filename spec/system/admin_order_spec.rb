@@ -24,8 +24,8 @@ RSpec.describe 'Order check', type: :system do
 
       visit admin_root_path
       click_link 'Orders'
-      expect(page).not_to have_content employee1.email
-      expect(page).not_to have_content employee2.email
+      expect(page).not_to have_content employee1.first_name
+      expect(page).not_to have_content employee2.first_name
       expect(page).not_to have_content reward.title
       expect(page).not_to have_content reward.description
       expect(page).not_to have_content reward.price
@@ -36,8 +36,8 @@ RSpec.describe 'Order check', type: :system do
       visit admin_root_path
       click_link 'Orders'
 
-      expect(page).to have_content employee1.email
-      expect(page).to have_content employee2.email
+      expect(page).to have_content employee1.first_name
+      expect(page).to have_content employee2.first_name
       expect(page).to have_content reward.title
       expect(page).to have_content reward.description
       expect(page).to have_content reward.price.to_i
