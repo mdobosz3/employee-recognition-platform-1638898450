@@ -17,12 +17,12 @@
       <tr>
         <td><%= kudo.title %></td>
         <td><%= kudo.content %></td>
-         <% if kudo.giver.first_name.nil? %>
+         <% if kudo.giver.first_name == 'default' %>
             <td class="text-center"><%= kudo.giver.email %></td>
           <%else%>
             <td class="text-center"><%= kudo.giver.first_name %> <%= kudo.giver.last_name %></td>
           <%end%>
-          <% if kudo.receiver.first_name.nil? %>
+          <% if kudo.receiver.first_name == 'default' %>
             <td class="text-center"><%= kudo.receiver.email %></td>
           <%else%>
             <td class="text-center"><%= kudo.receiver.first_name %> <%= kudo.receiver.last_name %></td>

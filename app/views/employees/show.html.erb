@@ -1,6 +1,6 @@
 <h2>Employee</h2>
 
-<% if current_employee.first_name.nil? %>
+<% if current_employee.first_name == 'default' %>
 <%= link_to "Add your name", edit_employee_path(current_employee), class: "btn btn-warning btn-sm" %>
 <%else%>
 First name: <%= current_employee.first_name %>

@@ -15,8 +15,9 @@
   <tbody>
     <% employees.each do |employee| %>
       <tr class="border-bottom">
-        <td><%= employee.first_name %></td>
-        <td><%= employee.last_name %></td>
+
+        <td><%= employee.first_name unless employee.first_name == 'default' %></td>
+        <td><%= employee.last_name unless employee.last_name == 'default' %></td>
         <td><%= employee.email %></td>
         <td class="text-center"><%= employee.number_of_available_kudos %></td>
         <td class="text-center"><%= employee.kudo_points %></td>

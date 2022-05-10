@@ -14,7 +14,7 @@
   <tbody>
     <% orders.each do |order| %>
       <tr>
-        <% if order.employee.first_name.nil? %>
+        <% if order.employee.first_name. == 'default' %>
           <td class="text-center"><%= order.employee.email %></td>
         <%else%>
           <td class="text-center"><%= order.employee.first_name %> <%= order.employee.last_name %></td>
