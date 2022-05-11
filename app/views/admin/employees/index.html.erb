@@ -15,15 +15,14 @@
   <tbody>
     <% employees.each do |employee| %>
       <tr class="border-bottom">
-
-        <td><%= employee.first_name unless employee.first_name == 'default' %></td>
-        <td><%= employee.last_name unless employee.last_name == 'default' %></td>
+        <td><%= employee.first_name unless employee.first_name.nil? %></td>
+        <td><%= employee.last_name unless employee.last_name.nil? %></td>
         <td><%= employee.email %></td>
         <td class="text-center"><%= employee.number_of_available_kudos %></td>
         <td class="text-center"><%= employee.kudo_points %></td>
         <td class="btn-group">
-          <%= link_to ' Edit', edit_admin_employee_path(employee), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
-          <%= link_to ' Delete', admin_employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-trash2" %></td>
+        <%= link_to ' Edit', edit_admin_employee_path(employee), class:"btn btn-outline-secondary btn-sm bi bi-pencil" unless employee.first_name.nil? %>
+        <%= link_to ' Delete', admin_employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-trash2" %></td>
       </tr>
     <% end %>
   </tbody>
