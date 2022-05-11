@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Employee check', type: :system do
-
   let!(:employee1) { create(:employee) }
   let!(:employee2) { build(:employee) }
   let!(:admin_user) { create(:admin_user) }
@@ -36,5 +35,4 @@ RSpec.describe 'Employee check', type: :system do
     expect(page).not_to have_content employee1.first_name
     expect(page).not_to have_content employee2.first_name
   end
-
 end
