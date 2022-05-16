@@ -17,8 +17,16 @@
       <tr>
         <td><%= kudo.title %></td>
         <td><%= kudo.content %></td>
-        <td class="text-center"><%= kudo.giver.email %></td>
-        <td class="text-center"><%= kudo.receiver.email %></td>
+         <% if kudo.giver.first_name.nil? %>
+            <td class="text-center"><%= kudo.giver.email %></td>
+          <%else%>
+            <td class="text-center"><%= kudo.giver.first_name %> <%= kudo.giver.last_name %></td>
+          <%end%>
+          <% if kudo.receiver.first_name.nil? %>
+            <td class="text-center"><%= kudo.receiver.email %></td>
+          <%else%>
+            <td class="text-center"><%= kudo.receiver.first_name %> <%= kudo.receiver.last_name %></td>
+          <%end%>
         <td class="text-center"><%= kudo.company_value.title %></td>
         <td class="btn-group">
           <%= link_to ' Edit', edit_admin_kudo_path(kudo), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>

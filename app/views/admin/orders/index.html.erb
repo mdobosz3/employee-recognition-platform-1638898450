@@ -14,7 +14,11 @@
   <tbody>
     <% orders.each do |order| %>
       <tr>
-        <td><%= order.employee.email %></td>
+        <% if order.employee.first_name.nil? %>
+          <td class="text-center"><%= order.employee.email %></td>
+        <%else%>
+          <td class="text-center"><%= order.employee.first_name %> <%= order.employee.last_name %></td>
+        <%end%>
         <td><%= order.reward_snapshot.title %></td>
         <td><%= order.reward_snapshot.description %></td>
         <td><%= order.reward_snapshot.price.to_i %></td>

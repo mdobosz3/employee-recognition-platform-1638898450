@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name])
+  end
+
   include Pundit::Authorization
 
   def pundit_user
@@ -12,6 +20,6 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    redirect_to kudos_path, notice: 'You can no longer edit or delete this kudo.'
+    redirect_to kudos_path, notice: 'Sorry, You are not authorized to do this.'
   end
 end
