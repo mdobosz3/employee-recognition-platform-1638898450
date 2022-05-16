@@ -7,9 +7,9 @@ class EmployeePolicy < ApplicationPolicy
 
   def permitted_attributes
     if user.first_name.nil? && user.last_name.nil?
-      [:first_name, :last_name]   
+      %i[first_name last_name]
     else
-      [:first_name, :last_name, :email, :password]
+      %i[first_name last_name email password]
     end
   end
 end

@@ -2,7 +2,6 @@
 
 class EmployeesController < ApplicationController
   before_action :authenticate_employee!
-  #before_action :check_employee, only: %i[edit]
 
   def show
     render :show, locals: { employee: current_employee }
