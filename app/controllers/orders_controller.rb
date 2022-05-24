@@ -12,8 +12,8 @@ class OrdersController < ApplicationController
   end
 
   def new
-    reward = Reward.find(params[:reward])
-    if current_employee.kudo_points < reward.price
+    @reward = Reward.find(params[:reward])
+    if current_employee.kudo_points < @reward.price
       redirect_to rewards_path, notice: "You don't have enough kudos."
     else
       @order = Order.new

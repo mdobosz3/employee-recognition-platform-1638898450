@@ -29,6 +29,7 @@ RSpec.describe 'Order check', type: :system do
         end
 
         click_link 'Buy'
+        click_link 'Delivery online'
         expect(page).to have_content 'Reward was successfully buying.'
         within('[data-test-id="Kudo_Points"]') do
           expect(page).to have_content '0'

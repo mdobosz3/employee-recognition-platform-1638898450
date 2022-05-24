@@ -16,11 +16,11 @@ RSpec.describe 'Order check', type: :system do
       click_link 'Download CSV list'
 
       csv = CSV.new(page.body).read
-      headers = '["Employee Email", "Title", "Description", "Price", "Purchase time", "Status"]'
+      headers = '["Employee Email", "Title", "Description", "Price", "Purchase time", "Status", "Street", "Postcode", "City"]'
       row1 = "[\"  #{order1.employee.email}\", \"#{order1.reward_snapshot.title}\", \"#{order1.reward_snapshot.description}\", " \
-                "\"#{order1.reward_snapshot.price}\", \"#{order1.created_at}\", \"#{order1.status}\"]"
+                "\"#{order1.reward_snapshot.price}\", \"#{order1.created_at}\", \"#{order1.status}\", \"\", \"\", \"\"]"
       row2 = "[\"  #{order2.employee.email}\", \"#{order2.reward_snapshot.title}\", \"#{order2.reward_snapshot.description}\", " \
-                "\"#{order2.reward_snapshot.price}\", \"#{order2.created_at}\", \"#{order2.status}\"]"
+                "\"#{order2.reward_snapshot.price}\", \"#{order2.created_at}\", \"#{order2.status}\", \"\", \"\", \"\"]"
       expect(csv).to have_content headers
       expect(csv).to have_content row1
       expect(csv).to have_content row2
