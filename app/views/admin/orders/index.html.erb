@@ -6,6 +6,7 @@
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
+      <th>Deliver method</th>
       <th>Purchase time</th>
       <th>Status</th>
     </tr>
@@ -22,10 +23,16 @@
         <td><%= order.reward_snapshot.title %></td>
         <td><%= order.reward_snapshot.description %></td>
         <td><%= order.reward_snapshot.price.to_i %></td>
+        <td class="align-middle" style="text-align: center">
+        <% if order.address == nil %>
+          <%= order.employee.email %>
+        <% else %>
+          <%= order.address.street + ", " + order.address.postcode + " " + order.address.city %>
+        <% end %>
         <td><%= order.created_at.strftime("%d-%m-%y %H:%M") %></td>
         <td><%if order.not_delivered?%>
-        <%= button_to ' Deliver', admin_order_path(order), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-send-check" %>
-      <%end%></td>
+          <%= button_to ' Deliver', admin_order_path(order), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm bi bi-send-check" %>
+        <%end%></td>
       </tr>
     <% end %>
   </tbody>
