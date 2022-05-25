@@ -5,7 +5,9 @@ class OrdersController < ApplicationController
 
   def index
     if %w[delivered not_delivered].include?(params[:status])
-      render :index, locals: { orders: Order.filter_by_status(params[:status]).where(employee: current_employee).includes(:employee, :address) }
+      render :index,
+             locals: { orders: Order.filter_by_status(params[:status]).where(employee: current_employee).includes(:employee,
+                                                                                                                  :address) }
     else
       render :index, locals: { orders: Order.where(employee: current_employee).includes(:employee, :address) }
     end
@@ -22,7 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if params[:order] == nil
+    if params[:order].nil?
       reward = Reward.find(params[:reward])
       if current_employee.kudo_points < reward.price
         redirect_to rewards_path, notice: "You don't have enough kudos to buy this reward."
@@ -51,7 +53,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:employee_id, :reward_id, :reward_snapshot, address_attributes: [:street, :postcode, :city])
+    params.require(:order).permit(:employee_id, :reward_id, :reward_snapshot, address_attributes: %i[street postcode city])
   end
-
 end

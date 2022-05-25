@@ -20,7 +20,6 @@ class Reward < ApplicationRecord
       CSV.foreach(file.path, headers: true) do |row|
         slug = row[4]
         reward = Reward.find_by!(slug: slug)
-        binding.pry
         Reward.update(reward.id, row.to_h)
       end
     end
