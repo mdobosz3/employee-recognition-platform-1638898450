@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Order check', type: :system do
-
   context 'when an employee purchase a reward and check order list' do
     let!(:employee) { create(:employee) }
     let(:admin_user) { create(:admin_user) }
