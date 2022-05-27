@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
         @order = Order.new(order_params)
         @order.reward_snapshot = @reward
         if @order.save
-          redirect_to rewards_path, notice: 'Reward was successfully buying'
+          redirect_to rewards_path, notice: 'Reward was successfully buying.'
         else
           render :new
         end
