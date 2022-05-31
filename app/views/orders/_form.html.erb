@@ -11,9 +11,7 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :employee_id, value: current_employee.id %>
   <%= form.hidden_field :reward_id, value: @reward.id %>
-  <%= form.hidden_field :reward_snapshot, value: @reward %>
 
   <% if @reward.delivery_method == 'post'%>
     <h5>Add a address:</h5>
@@ -36,5 +34,8 @@
       <%= link_to 'Back', rewards_path, class:'btn btn-secondary btn-sm' %>
       <%= form.submit "Delivery by post", class:"bi bi-mailbox btn btn-outline-success btn-sm"%>
     </div>
+    <% else %>
+      <%= link_to 'Back', rewards_path, class:'btn btn-secondary btn-sm' %>
+      <%= link_to ' Delivery online', orders_path(reward: @reward), method: :post, class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
   <% end %>
 <% end %>

@@ -40,6 +40,7 @@ class OrdersController < ApplicationController
         redirect_to rewards_path, notice: "You don't have enough kudos to buy this reward."
       else
         @order = Order.new(order_params)
+        @order.employee_id = current_employee.id
         @order.reward_snapshot = @reward
         if @order.save
           redirect_to rewards_path, notice: 'Reward was successfully buying.'

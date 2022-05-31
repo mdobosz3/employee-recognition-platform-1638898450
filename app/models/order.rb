@@ -17,4 +17,12 @@ class Order < ApplicationRecord
   def snapshot_price
     reward_snapshot.price
   end
+
+  def post_address
+    if address.nil?
+      employee.email
+    else
+      "#{address.street}, #{address.postcode} #{address.city}"
+    end
+  end
 end

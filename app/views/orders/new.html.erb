@@ -11,10 +11,6 @@
         <%= image_tag @reward.photo, width: '240px' %>
       <%end%>
     </div>
-    <% if @reward.delivery_method == 'online'%>
-      <%= link_to 'Back', rewards_path, class:'btn btn-secondary btn-sm' %>
-      <%= link_to ' Delivery online', orders_path(reward: @reward), method: :post, class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
-    <% end %>
     <%= render 'form', order: @order %>
   </div>
 </div>

@@ -7,7 +7,7 @@ RSpec.describe 'Order check', type: :system do
     let!(:employee) { create(:employee) }
     let(:admin_user) { create(:admin_user) }
     let(:company_value) { create(:company_value) }
-    let!(:reward) { create(:reward, price: 2) }
+    let!(:reward) { create(:reward, price: 2, delivery_method: 'online') }
     let!(:address) { build(:address) }
 
     before do
@@ -16,7 +16,7 @@ RSpec.describe 'Order check', type: :system do
       create(:kudo, receiver: employee)
     end
 
-    it 'Buying a reward onlone and by post' do
+    it 'Buying a reward online and by post' do
       Capybara.using_session(:employee) do
         sign_in employee
 
