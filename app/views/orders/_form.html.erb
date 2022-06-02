@@ -1,0 +1,41 @@
+<%= form_with model: order do |form| %>
+
+ <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+      <ul>
+        <% order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :reward_id, value: @reward.id %>
+
+  <% if @reward.delivery_method == 'post'%>
+    <h5>Add a address:</h5>
+    <%= form.fields_for :address do |p| %>
+      <div class="field form-group">
+        <%= p.label :street %><br>
+        <%= p.text_field :street, class:"form-control" %>
+      </div>
+      <div class="field form-group">
+        <%= p.label :postcode %><br>
+        <%= p.text_field :postcode, class:"form-control" %>
+      </div>
+      <div class="field form-group">
+        <%= p.label :city %><br>
+        <%= p.text_field :city, class:"form-control" %>
+      </div>
+    <% end %>
+    <br>
+    <div class="action">
+      <%= link_to 'Back', rewards_path, class:'btn btn-secondary btn-sm' %>
+      <%= form.submit "Delivery by post", class:"bi bi-mailbox btn btn-outline-success btn-sm"%>
+    </div>
+    <% else %>
+      <%= link_to 'Back', rewards_path, class:'btn btn-secondary btn-sm' %>
+      <%= link_to ' Delivery online', orders_path(reward: @reward), method: :post, class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
+  <% end %>
+<% end %>

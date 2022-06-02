@@ -11,6 +11,7 @@
         <th>Title</th>
         <th>Price</th>
         <th>Photo</th>
+        <th>Delivery method</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -24,9 +25,10 @@
               <%= image_tag reward.photo, width: '50px' %>
             <%end%>
           </td>
+          <td style="text-align: center; vertical-align:middle"><%= reward.delivery_method %></td>
           <td class="btn-group">
             <%= link_to ' Show', reward_path(reward), class:"bi bi-eye btn btn-outline-secondary btn-sm" %>
-            <%= link_to ' Buy', orders_path(reward: reward), method: :post, class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
+            <%= link_to ' Buy', new_order_path(reward: reward), class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
           </td>
         </tr>
       <% end %>

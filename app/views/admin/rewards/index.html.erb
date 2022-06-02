@@ -17,6 +17,7 @@
       <th>Description</th>
       <th>Price</th>
       <th>Photo</th>
+      <th>Delivery method</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -32,11 +33,10 @@
             <%= image_tag reward.photo, width: '50px' %>
           <%end%>
         </td>
+        <td style="text-align: center; vertical-align:middle"><%= reward.delivery_method %></td>
         <td class="btn-group">
-        <%= link_to ' Edit', edit_admin_reward_path(reward), 
-        class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
-        <%= link_to ' Show', admin_reward_path(reward), 
-        class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
+        <%= link_to ' Edit', edit_admin_reward_path(reward), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
+        <%= link_to ' Show', admin_reward_path(reward), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
         <%= link_to ' Delete', admin_reward_path(reward), 
         method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm bi bi-trash2" %></td>
       </tr>

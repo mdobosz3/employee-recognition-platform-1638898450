@@ -39,7 +39,11 @@
     <%= form.label :photo %><br>
     <%= form.file_field :photo, class:"form-control" %>
   </div>
-<br>
+  <div class="field form-group">
+    <%= form.label :delivery_method %><br>
+    <%= form.select :delivery_method, Reward.delivery_methods.keys, {}, class:'form-control' %>
+  </div>
+  <br>
   <div class="actions">
     <%= form.submit %>
   </div>

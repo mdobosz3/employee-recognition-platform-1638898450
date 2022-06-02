@@ -5,7 +5,7 @@ module Admin
     def index
       respond_to do |format|
         format.html do
-          render :index, locals: { orders: Order.includes(:employee).all.order(:status) }
+          render :index, locals: { orders: Order.includes(:employee, :address).all.order(:status) }
         end
         format.csv do
           response.headers['Content-Type'] = 'text/csv'

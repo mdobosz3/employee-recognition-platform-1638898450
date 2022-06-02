@@ -9,7 +9,20 @@ class Order < ApplicationRecord
   belongs_to :employee
   belongs_to :reward
 
+  has_one :address, dependent: :destroy, inverse_of: :order
+  accepts_nested_attributes_for :address
+
+  validates_associated :address
+
   def snapshot_price
     reward_snapshot.price
+  end
+
+  def post_address
+    if address.nil?
+      employee.email
+    else
+      "#{address.street}, #{address.postcode} #{address.city}"
+    end
   end
 end
