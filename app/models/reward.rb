@@ -9,6 +9,7 @@ class Reward < ApplicationRecord
 
   has_many :orders, dependent: :destroy
   has_many :employees, through: :orders
+  has_many :reward_codes, dependent: :destroy
 
   has_many :category_rewards, dependent: :destroy
   has_many :categories, through: :category_rewards
