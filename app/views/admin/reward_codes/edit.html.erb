@@ -1,0 +1,8 @@
+<h1>Editing Reward code</h1>
+
+<%= render 'form', reward_code: reward_code %>
+<br>
+<%= link_to 'Back', admin_rewards_path, class:"btn btn-dark" %>
+<% if reward_code.unused? %>
+| <%= link_to 'Delete', admin_reward_code_path(reward_code), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+<% end %>

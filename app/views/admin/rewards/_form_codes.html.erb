@@ -1,0 +1,22 @@
+    <div class="d-flex justify-content-center">
+      <table class="table table-responsive table-hover">
+        <thead>
+          <tr class="text-center">
+          <th>Code</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% reward.reward_codes.each do |code| %>
+            <tr>
+            <td style="text-align: center"><%= code.code %></td>
+            <td style="text-align: center"><%= code.sale %></td>
+            <td style="text-align: center">
+            <%= link_to ' Edit', edit_admin_reward_code_path(code.id), class:"btn btn-outline-secondary btn-sm bi bi-pencil" %>
+            </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
