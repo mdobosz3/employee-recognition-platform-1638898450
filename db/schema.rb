@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_02_114247) do
+ActiveRecord::Schema.define(version: 2022_06_05_141031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,8 @@ ActiveRecord::Schema.define(version: 2022_06_02_114247) do
     t.bigint "reward_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_reward_codes_on_order_id"
     t.index ["reward_id"], name: "index_reward_codes_on_reward_id"
   end
 
@@ -154,5 +156,6 @@ ActiveRecord::Schema.define(version: 2022_06_02_114247) do
   add_foreign_key "kudos", "employees", column: "receiver_id"
   add_foreign_key "orders", "employees"
   add_foreign_key "orders", "rewards"
+  add_foreign_key "reward_codes", "orders"
   add_foreign_key "reward_codes", "rewards"
 end

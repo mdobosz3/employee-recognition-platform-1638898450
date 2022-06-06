@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     root to: 'pages#dashboard'
     resources :kudos
     resources :company_values
+    resources :reward_codes, only: %i[edit update destroy]
     resources :rewards do
       collection { post :import }
     end
