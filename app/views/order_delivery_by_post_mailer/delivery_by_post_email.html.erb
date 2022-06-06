@@ -9,7 +9,8 @@
     <%else%>
       <h1>Welcome <%= @order.employee.first_name %>!</h1>
     <%end%>
-    <p> You bought "<%= @order.reward.title %>", your order code: <%= @order.reward_code.code %></p>
+    <p> Your order "<%= @order.reward.title %>" was shipped to the address:</p>
+    <%= @order.address.street + ", " + @order.address.postcode + " " + @order.address.city%>
     <br>
     <p>We wish you a nice day!</p>
   </body>

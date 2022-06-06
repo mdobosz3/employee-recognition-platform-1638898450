@@ -5,7 +5,7 @@ module Admin
     def index
       respond_to do |format|
         format.html do
-          render :index, locals: { orders: Order.includes(:employee, :address).all.order(:status) }
+          render :index, locals: { orders: Order.includes(:employee, :address, :reward_code).all.order(:status) }
         end
         format.csv do
           response.headers['Content-Type'] = 'text/csv'
@@ -20,7 +20,7 @@ module Admin
       if order.delivered?
         redirect_to admin_orders_path, notice: 'Order was already delivered'
       elsif order.update(status: :delivered)
-        OrderDeliveryMailer.with(order: order).delivery_email.deliver_now
+        OrderDeliveryMailer.with(order: order).delivery_by_post_email.deliver_now
         redirect_to admin_orders_path, notice: 'Order was successfully delivered.'
       else
         redirect_to admin_orders_path, notice: 'Order was not delivered'
