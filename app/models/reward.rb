@@ -20,20 +20,17 @@ class Reward < ApplicationRecord
     ActiveRecord::Base.transaction do
       CSV.foreach(file.path, headers: true) do |row|
         reward_hash = row.to_h
-        number_of_codes = reward_hash.length-5
+        number_of_codes = reward_hash.length - 5
         reward = Reward.find_by!(slug: reward_hash['slug'])
-        Reward.update(reward.id, title: reward_hash['title'], 
-                                description: reward_hash['description'], 
-                                price: reward_hash['price'], 
-                                delivery_method: reward_hash['delivery_method'])
-        if number_of_codes  > 9  
-          (1..number_of_codes).each do |i| 
-            if RewardCode.find_by(code: reward_hash["code#{i}"]).nil? 
-              reward.reward_codes.build(code: reward_hash["code#{i}"])
-            end
+        Reward.update(reward.id, title: reward_hash['title'],
+                                 description: reward_hash['description'],
+                                 price: reward_hash['price'],
+                                 delivery_method: reward_hash['delivery_method'])
+        if number_of_codes > 9
+          (1..number_of_codes).each do |i|
+            reward.reward_codes.build(code: reward_hash["code#{i}"]) if RewardCode.find_by(code: reward_hash["code#{i}"]).nil?
           end
         end
-         binding.pry
         reward.save!
       end
     end

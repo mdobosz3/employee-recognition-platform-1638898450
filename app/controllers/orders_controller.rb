@@ -6,7 +6,8 @@ class OrdersController < ApplicationController
   def index
     if %w[delivered not_delivered].include?(params[:status])
       render :index,
-             locals: { orders: Order.filter_by_status(params[:status]).where(employee: current_employee).includes(:employee, :address) }
+             locals: { orders: Order.filter_by_status(params[:status]).where(employee: current_employee).includes(:employee,
+                                                                                                                  :address) }
     else
       render :index, locals: { orders: Order.where(employee: current_employee).includes(:employee, :address) }
     end
@@ -15,7 +16,7 @@ class OrdersController < ApplicationController
   def new
     @reward = Reward.find(params[:reward])
     if @reward.reward_codes.unused.exists? == false && @reward.online? == true
-      redirect_to rewards_path, notice: "Sorry, this reward is not available at the moment."
+      redirect_to rewards_path, notice: 'Sorry, this reward is not available at the moment.'
     elsif current_employee.kudo_points < @reward.price
       redirect_to rewards_path, notice: "You don't have enough kudos."
     else
@@ -33,14 +34,14 @@ class OrdersController < ApplicationController
       elsif reward.reward_codes.unused.exists?
         begin
           ActiveRecord::Base.transaction do
-            reward_code = RewardCode.where(reward_id: reward.id, sale: "unused").first
+            reward_code = RewardCode.where(reward_id: reward.id, sale: 'unused').first
             order = Order.new(employee: current_employee, reward: reward, reward_snapshot: reward, status: 'delivered')
             order.save!
             reward_code.update!(order: order, sale: 'used')
             OrderDeliveryMailer.with(order: order).delivery_email.deliver_now
           end
           redirect_to rewards_path, notice: 'Reward was successfully buying, check your email.'
-        rescue ActiveRecord::RecordNotSaved  => e
+        rescue ActiveRecord::RecordNotSaved => e
           redirect_to rewards_path, notice: "Something go wrong. Please try again. #{e.message}"
         end
       else

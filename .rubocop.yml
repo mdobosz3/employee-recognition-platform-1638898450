@@ -38,6 +38,8 @@ RSpec/MultipleExpectations:
 
 RSpec/MultipleMemoizedHelpers:
   Max: 6
+  Exclude:
+    - spec/mailers/order_delivery_mailer_spec.rb
 
 RSpec/LetSetup:
   Exclude:

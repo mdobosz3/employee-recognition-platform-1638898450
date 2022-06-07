@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   belongs_to :employee
   belongs_to :reward
 
-  has_one :reward_code
+  has_one :reward_code, dependent: :destroy
   has_one :address, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :address
 
