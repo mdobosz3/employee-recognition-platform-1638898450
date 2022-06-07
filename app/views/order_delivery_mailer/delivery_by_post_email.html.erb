@@ -4,11 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <% if @order.employee.first_name.nil? %>
+    #<% if @order.employee.first_name.nil? %>
       <h1>Welcome <%= @order.employee.email %>!</h1>
-    <%else%>
+    <% else %>
       <h1>Welcome <%= @order.employee.first_name %>!</h1>
-    <%end%>
+    <% end %>
     <p> Your order "<%= @order.reward.title %>" was shipped to the address:</p>
     <%= @order.address.street + ", " + @order.address.postcode + " " + @order.address.city%>
     <br>

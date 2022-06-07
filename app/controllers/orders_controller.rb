@@ -14,7 +14,9 @@ class OrdersController < ApplicationController
 
   def new
     @reward = Reward.find(params[:reward])
-    if current_employee.kudo_points < @reward.price
+    if @reward.reward_codes.unused.exists? == false && @reward.online? == true
+      redirect_to rewards_path, notice: "Sorry, this reward is not available at the moment."
+    elsif current_employee.kudo_points < @reward.price
       redirect_to rewards_path, notice: "You don't have enough kudos."
     else
       @order = Order.new
@@ -28,26 +30,23 @@ class OrdersController < ApplicationController
       reward = Reward.find(params[:reward])
       if current_employee.kudo_points < reward.price
         redirect_to rewards_path, notice: "You don't have enough kudos to buy this reward."
-      elsif RewardCode.where(reward_id: reward.id, sale: "unused").count > 0
-
+      elsif reward.reward_codes.unused.exists?
         begin
           ActiveRecord::Base.transaction do
             reward_code = RewardCode.where(reward_id: reward.id, sale: "unused").first
             order = Order.new(employee: current_employee, reward: reward, reward_snapshot: reward, status: 'delivered')
             order.save!
             reward_code.update!(order: order, sale: 'used')
-            
+            OrderDeliveryMailer.with(order: order).delivery_email.deliver_now
           end
-          binding.pry
-          OrderDeliveryMailer.with(order: order).delivery_email.deliver_now
           redirect_to rewards_path, notice: 'Reward was successfully buying, check your email.'
         rescue ActiveRecord::RecordNotSaved  => e
           redirect_to rewards_path, notice: "Something go wrong. Please try again. #{e.message}"
         end
-
       else
-        redirect_to rewards_path, notice: 'This Reward is currently unavailable.'
+        redirect_to rewards_path, notice: 'Sorry, this reward is not available at the moment.'
       end
+
     # delivered by post
     else
       @reward = Reward.find(params[:order][:reward_id])

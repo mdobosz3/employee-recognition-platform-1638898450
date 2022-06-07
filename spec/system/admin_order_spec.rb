@@ -12,7 +12,7 @@ RSpec.describe 'Order check', type: :system do
     let!(:employee2) { create(:employee) }
     let(:admin_user) { create(:admin_user) }
     let(:company_value) { create(:company_value) }
-    let!(:reward) { create(:reward) }
+    let!(:reward) { create(:reward, delivery_method: 'post') }
 
     before do
       create(:kudo, receiver: employee1)
@@ -30,8 +30,12 @@ RSpec.describe 'Order check', type: :system do
       expect(page).not_to have_content reward.description
       expect(page).not_to have_content reward.price
 
-      create(:order, employee_id: employee1.id, reward: reward, reward_snapshot: reward)
-      create(:order, employee_id: employee2.id, reward: reward, reward_snapshot: reward)
+      order1 = create(:order, employee_id: employee1.id, reward: reward, reward_snapshot: reward)
+      order2 = create(:order, employee_id: employee2.id, reward: reward, reward_snapshot: reward)
+      address1 = create(:address, order: order1)
+      address2 = create(:address, order: order2)
+      order1.address = address1
+      order2.address = address2
 
       visit admin_root_path
       click_link 'Orders'

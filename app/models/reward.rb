@@ -33,6 +33,7 @@ class Reward < ApplicationRecord
             end
           end
         end
+         binding.pry
         reward.save!
       end
     end
