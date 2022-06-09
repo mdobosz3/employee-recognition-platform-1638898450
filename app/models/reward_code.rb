@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class RewardCode < ApplicationRecord
-  enum sale: { unused: 0, used: 1 }
+  enum status: { unused: 0, used: 1 }
 
-  validates :code, :sale, presence: true
+  validates :code, :status, presence: true
 
   belongs_to :reward
   belongs_to :order, optional: true

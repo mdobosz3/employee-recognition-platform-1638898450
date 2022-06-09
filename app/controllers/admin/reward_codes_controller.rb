@@ -35,7 +35,7 @@ module Admin
     end
 
     def reward_code_params
-      params.require(:reward_code).permit(:code, :sale, :reward_id)
+      params.require(:reward_code).permit(:code, :status, :reward_id)
     end
   end
 end
