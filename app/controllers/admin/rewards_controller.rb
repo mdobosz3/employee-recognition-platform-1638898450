@@ -12,9 +12,7 @@ module Admin
       elsif Reward.import(params[:file])
         redirect_to admin_rewards_path, notice: 'Rewards was successfully imported.'
       end
-    rescue ActiveRecord::RecordInvalid => e
-      redirect_to admin_rewards_path, notice: "Check your csv file - #{e}"
-    rescue CSV::MalformedCSVError => e
+    rescue ActiveRecord::RecordInvalid, CSV::MalformedCSVError => e
       redirect_to admin_rewards_path, notice: "Check your csv file - #{e}"
     end
 

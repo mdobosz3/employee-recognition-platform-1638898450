@@ -16,4 +16,20 @@ class Employee < ApplicationRecord
   def kudo_points
     received_kudos.count - orders.sum(&:snapshot_price).to_i
   end
+
+  def full_name
+    if first_name && last_name
+      "#{first_name} #{last_name}"
+    else
+      email
+    end
+  end
+
+  def display_name
+    if first_name
+      "#{first_name}"
+    else
+      email
+    end
+  end
 end

@@ -35,14 +35,14 @@ class OrdersController < ApplicationController
         begin
           ActiveRecord::Base.transaction do
             reward_code = RewardCode.where(reward_id: reward.id, status: 'unused').first
+            OrderDeliveryMailer.with(order: order).delivery_email.deliver_now
             order = Order.new(employee: current_employee, reward: reward, reward_snapshot: reward, status: 'delivered')
             order.save!
             reward_code.update!(order: order, status: 'used')
-            OrderDeliveryMailer.with(order: order).delivery_email.deliver_now
           end
-          redirect_to rewards_path, notice: 'Reward was successfully buying, check your email.'
+          redirect_to rewards_path, notice: 'Reward was successfully purchuased, check your email.'
         rescue ActiveRecord::RecordNotSaved => e
-          redirect_to rewards_path, notice: "Something go wrong. Please try again. #{e.message}"
+          redirect_to rewards_path, notice: "Something has gone wrong. Please try again. #{e.message}"
         end
       else
         redirect_to rewards_path, notice: 'Sorry, this reward is not available at the moment.'

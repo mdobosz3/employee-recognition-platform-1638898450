@@ -15,14 +15,14 @@ RSpec.describe OrderDeliveryMailer, type: :mailer do
     let(:mail2) { described_class.with(order: order2).delivery_email.deliver_now }
 
     # delivery by post
-    it 'checking the headers post email' do
+    it 'has expected headers in the delivered email' do
       order1.address = address
       expect(mail1.subject).to have_content 'Your order has been delivered'
       expect(mail1.to).to have_content order1.employee.email
       expect(mail1.from).to have_content 'doboszmichal33@gmail.com'
     end
 
-    it 'checking the body post email' do
+    it 'has expected body post email' do
       expect(mail1.body).to have_content order1.employee.first_name
       expect(mail1.body).to have_content order1.reward_snapshot.title
       expect(mail1.body).to have_content order1.address.street
@@ -31,14 +31,14 @@ RSpec.describe OrderDeliveryMailer, type: :mailer do
     end
 
     # delivery by email
-    it 'checking the headers' do
+    it 'has expected headers' do
       order2.reward_code = reward_code
       expect(mail2.subject).to have_content 'Your order has been delivered'
       expect(mail2.to).to have_content order2.employee.email
       expect(mail2.from).to have_content 'doboszmichal33@gmail.com'
     end
 
-    it 'checking the body' do
+    it 'has expected body' do
       expect(mail2.body).to have_content order2.employee.first_name
       expect(mail2.body).to have_content order2.reward_snapshot.title
       expect(mail2.body).to have_content order2.reward_code.code
