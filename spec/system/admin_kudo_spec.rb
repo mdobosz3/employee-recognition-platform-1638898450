@@ -22,8 +22,8 @@ RSpec.describe 'Kudo check', type: :system do
     click_link 'New Kudo'
     fill_in 'Title', with: kudo.title
     fill_in 'Content', with: kudo.content
-    select employee1.email, from: 'kudo[giver_id]'
-    select employee2.email, from: 'kudo[receiver_id]'
+    select employee1.full_name, from: 'kudo[giver_id]'
+    select employee2.full_name, from: 'kudo[receiver_id]'
     select company_value1.title, from: 'kudo[company_value_id]'
     click_button 'Create Kudo'
     expect(page).to have_content 'Kudo was successfully created.'
@@ -32,8 +32,8 @@ RSpec.describe 'Kudo check', type: :system do
     click_link 'Edit'
     fill_in 'Title', with: 'title test edit'
     fill_in 'Content', with: 'content test edit'
-    select employee2.email, from: 'kudo[giver_id]'
-    select employee1.email, from: 'kudo[receiver_id]'
+    select employee2.full_name, from: 'kudo[giver_id]'
+    select employee1.full_name, from: 'kudo[receiver_id]'
     select company_value2.title, from: 'kudo[company_value_id]'
     click_button 'Update Kudo'
     expect(page).to have_content 'Kudo was successfully updated.'

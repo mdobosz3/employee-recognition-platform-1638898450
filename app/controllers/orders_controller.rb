@@ -35,10 +35,10 @@ class OrdersController < ApplicationController
         begin
           ActiveRecord::Base.transaction do
             reward_code = RewardCode.where(reward_id: reward.id, status: 'unused').first
-            OrderDeliveryMailer.with(order: order).delivery_email.deliver_now
             order = Order.new(employee: current_employee, reward: reward, reward_snapshot: reward, status: 'delivered')
             order.save!
             reward_code.update!(order: order, status: 'used')
+            OrderDeliveryMailer.with(order: order).delivery_email.deliver_now
           end
           redirect_to rewards_path, notice: 'Reward was successfully purchuased, check your email.'
         rescue ActiveRecord::RecordNotSaved => e
