@@ -26,10 +26,6 @@ class Employee < ApplicationRecord
   end
 
   def display_name
-    if first_name
-      first_name
-    else
-      email
-    end
+    first_name || email
   end
 end
