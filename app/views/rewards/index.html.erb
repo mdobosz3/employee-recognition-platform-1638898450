@@ -28,7 +28,9 @@
           <td style="text-align: center; vertical-align:middle"><%= reward.delivery_method %></td>
           <td class="btn-group">
             <%= link_to ' Show', reward_path(reward), class:"bi bi-eye btn btn-outline-secondary btn-sm" %>
-            <%= link_to ' Buy', new_order_path(reward: reward), class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
+            <% if reward.reward_codes.exists? || reward.delivery_method = 'post'%>
+              <%= link_to ' Buy', new_order_path(reward: reward), class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
+            <% end %>
           </td>
         </tr>
       <% end %>

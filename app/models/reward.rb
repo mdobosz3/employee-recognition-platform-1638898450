@@ -9,6 +9,7 @@ class Reward < ApplicationRecord
 
   has_many :orders, dependent: :destroy
   has_many :employees, through: :orders
+  has_many :reward_codes, dependent: :destroy
 
   has_many :category_rewards, dependent: :destroy
   has_many :categories, through: :category_rewards
@@ -18,12 +19,20 @@ class Reward < ApplicationRecord
   def self.import(file)
     ActiveRecord::Base.transaction do
       CSV.foreach(file.path, headers: true) do |row|
-        slug = row[4]
-        reward = Reward.find_by!(slug: slug)
-        Reward.update(reward.id, row.to_h)
+        reward_hash = row.to_h
+        number_of_codes = reward_hash.length - 5
+        reward = Reward.find_by!(slug: reward_hash['slug'])
+        Reward.update(reward.id, title: reward_hash['title'],
+                                 description: reward_hash['description'],
+                                 price: reward_hash['price'],
+                                 delivery_method: reward_hash['delivery_method'])
+        if number_of_codes > 9
+          (1..number_of_codes).each do |i|
+            reward.reward_codes.build(code: reward_hash["code#{i}"]) if RewardCode.find_by(code: reward_hash["code#{i}"]).nil?
+          end
+        end
+        reward.save!
       end
     end
-  rescue ActiveRecord::RecordNotFound, CSV::MalformedCSVError
-    false
   end
 end

@@ -7,12 +7,13 @@ module Admin
     end
 
     def import
-      if Reward.import(params[:file])
+      if params[:file].nil?
+        redirect_to admin_rewards_path, notice: 'No file selected.'
+      elsif Reward.import(params[:file])
         redirect_to admin_rewards_path, notice: 'Rewards was successfully imported.'
-      else
-        redirect_to admin_rewards_path,
-                    notice: 'Rewards were not imported. Check the data entered in the "slug" column and try again.'
       end
+    rescue ActiveRecord::RecordInvalid, CSV::MalformedCSVError => e
+      redirect_to admin_rewards_path, notice: "Check your csv file - #{e}"
     end
 
     def show

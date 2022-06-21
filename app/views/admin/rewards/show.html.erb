@@ -21,7 +21,9 @@
         <%= image_tag reward.photo, width: '240px' %>
       <%end%>
     </div>
-    <br>
+
+    <%= render 'index_codes', reward: reward %>
+
     <%= link_to 'Edit', edit_admin_reward_path(reward), class:"btn btn-secondary btn-sm" %> |
     <%= link_to 'Back', admin_rewards_path, class:"btn btn-secondary btn-sm" %>
   </div>

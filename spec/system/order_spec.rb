@@ -8,6 +8,7 @@ RSpec.describe 'Order check', type: :system do
     let(:admin_user) { create(:admin_user) }
     let(:company_value) { create(:company_value) }
     let!(:reward) { create(:reward, price: 2, delivery_method: 'online') }
+    let!(:reward_code) { create(:reward_code, reward: reward) }
     let!(:address) { build(:address) }
 
     before do
@@ -28,7 +29,7 @@ RSpec.describe 'Order check', type: :system do
 
         click_link 'Buy'
         click_link 'Delivery online'
-        expect(page).to have_content 'Reward was successfully buying.'
+        expect(page).to have_content 'Reward was successfully purchuased, check your email.'
         within('[data-test-id="Kudo_Points"]') do
           expect(page).to have_content '1'
         end

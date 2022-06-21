@@ -1,0 +1,26 @@
+<%= form_with(model: [ :admin, reward_code ]) do |form| %>
+  <% if reward_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reward_code.errors.count, "error") %> prohibited this reward code from being saved:</h2>
+
+      <ul>
+        <% reward_code.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+ <div class="field form-group">
+    <%= form.label :code %><br>
+    <%= form.text_field :code, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= form.label :sale %><br>
+    <%= form.select :sale, RewardCode.status.keys, {}, class:'form-control' %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
