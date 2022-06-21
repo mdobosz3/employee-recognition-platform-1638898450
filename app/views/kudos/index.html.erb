@@ -16,8 +16,8 @@
         <tr class="border-bottom">
           <td><%= kudo.title %></td>
           <td><%= kudo.content %></td>
-          <td class="text-center"><%= kudo.giver.full_name %> <%= kudo.giver.last_name %></td>
-          <td class="text-center"><%= kudo.receiver.full_name %> <%= kudo.receiver.last_name %></td>
+          <td class="text-center"><%= kudo.giver.full_name %></td>
+          <td class="text-center"><%= kudo.receiver.full_name %></td>
           <td class="text-center"><%= kudo.company_value.title %></td>
           <% if kudo.giver == current_employee %>
           <td class="btn-group">
