@@ -33,6 +33,7 @@
     <div class="action">
       <%= link_to 'Back', rewards_path, class:'btn btn-secondary btn-sm' %>
       <%= form.submit "Delivery by post", class:"bi bi-mailbox btn btn-outline-success btn-sm"%>
+      <%= link_to ' Pick-up in office', orders_path(order: {reward_id: @reward, address_attributes: {street: "pick-up", postcode: "pick-up", city:"pick-up"}}), method: :post, class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
     </div>
     <% else %>
       <%= link_to 'Back', rewards_path, class:'btn btn-secondary btn-sm' %>
