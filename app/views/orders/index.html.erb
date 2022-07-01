@@ -23,11 +23,7 @@
         <td class="align-middle"><%= order.reward_snapshot.title %></td>
         <td><%= order.reward_snapshot.description %></td>
         <td class="align-middle" style="text-align: center", data-test-id="Order_Price"><%= order.reward_snapshot.price.to_i %></td>
-        <% if order.address == nil %>
-          <td class="align-middle" style="text-align: center"><%= order.employee.email %></td>
-        <% else %>
-          <td class="align-middle" style="text-align: center"><%= order.address.street + ", " + order.address.postcode + " " + order.address.city %></td>
-        <% end %>
+        <td class="align-middle" style="text-align: center"><%= order.post_address %></td>
         <td class="align-middle" style="text-align: center"><%= order.created_at.strftime("%d-%m-%y %H:%M") %></td>
       </tr>
     <% end %>
