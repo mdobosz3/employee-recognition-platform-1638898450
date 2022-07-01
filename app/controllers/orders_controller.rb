@@ -74,5 +74,4 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:employee_id, :reward_id, :reward_snapshot, address_attributes: %i[street postcode city])
   end
-  
 end
