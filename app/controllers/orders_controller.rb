@@ -57,7 +57,10 @@ class OrdersController < ApplicationController
         @order = Order.new(order_params)
         @order.employee_id = current_employee.id
         @order.reward_snapshot = @reward
-        if @order.save
+        if @order.save && params[:order][:address_attributes][:street] == 'pick-up'
+          redirect_to rewards_path, notice: 'Reward was successfully buying.'
+          OrderDeliveryMailer.with(order: @order).delivery_pick_up_email.deliver_now
+        elsif @order.save
           redirect_to rewards_path, notice: 'Reward was successfully buying.'
         else
           redirect_to orders_path, notice: 'Order was not processed.'
@@ -71,4 +74,5 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:employee_id, :reward_id, :reward_snapshot, address_attributes: %i[street postcode city])
   end
+  
 end
