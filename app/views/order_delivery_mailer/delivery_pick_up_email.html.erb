@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome <%= @order.employee.display_name %>!</h1>
+    <p> Your order "<%= @order.reward.title %>" will be ready for pickup in 4 days.</p>
+    <p> After this time, go to room 33 and say "convention over configuration".</p>
+    <br>
+    <p>We wish you a nice day!</p>
+  </body>
+</html>
