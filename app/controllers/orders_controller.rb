@@ -57,7 +57,7 @@ class OrdersController < ApplicationController
         @order = Order.new(order_params)
         @order.employee_id = current_employee.id
         @order.reward_snapshot = @reward
-        if @order.save && params[:order][:address_attributes][:street] == 'pick-up'
+        if @order.save && params.dig(:order, :address_attributes, :street) == 'pick-up'
           redirect_to rewards_path, notice: 'Reward was successfully buying.'
           OrderDeliveryMailer.with(order: @order).delivery_pick_up_email.deliver_now
         elsif @order.save
