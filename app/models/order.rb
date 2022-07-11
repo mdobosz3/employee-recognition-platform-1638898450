@@ -22,6 +22,8 @@ class Order < ApplicationRecord
   def post_address
     if address.nil?
       employee.email
+    elsif address.street == 'pick-up'
+      'Pick-up in office'
     else
       "#{address.street}, #{address.postcode} #{address.city}"
     end

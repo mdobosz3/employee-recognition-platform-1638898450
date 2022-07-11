@@ -54,3 +54,7 @@ Metrics/AbcSize:
 Metrics/PerceivedComplexity:
   Exclude:
     - app/controllers/orders_controller.rb
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - app/controllers/orders_controller.rb

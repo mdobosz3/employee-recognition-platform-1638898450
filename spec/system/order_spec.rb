@@ -15,23 +15,24 @@ RSpec.describe 'Order check', type: :system do
       create(:kudo, receiver: employee)
       create(:kudo, receiver: employee)
       create(:kudo, receiver: employee)
+      create(:kudo, receiver: employee)
     end
 
-    it 'Buying a reward online and by post' do
+    it 'Buying a reward online, by post and pick-up' do
       Capybara.using_session(:employee) do
         sign_in employee
 
         visit root_path
         click_link 'Rewards'
         within('[data-test-id="Kudo_Points"]') do
-          expect(page).to have_content '3'
+          expect(page).to have_content '4'
         end
 
         click_link 'Buy'
         click_link 'Delivery online'
         expect(page).to have_content 'Reward was successfully purchuased, check your email.'
         within('[data-test-id="Kudo_Points"]') do
-          expect(page).to have_content '1'
+          expect(page).to have_content '2'
         end
 
         click_link 'Orders'
@@ -68,6 +69,15 @@ RSpec.describe 'Order check', type: :system do
         fill_in 'Postcode', with: address.postcode
         fill_in 'City', with: address.city
         click_button 'Delivery by post'
+        expect(page).to have_content 'Reward was successfully buying.'
+        within('[data-test-id="Kudo_Points"]') do
+          expect(page).to have_content '1'
+        end
+
+        click_link 'Rewards'
+        expect(page).to have_content 'post'
+        click_link 'Buy'
+        click_link 'Pick-up in office'
         expect(page).to have_content 'Reward was successfully buying.'
         within('[data-test-id="Kudo_Points"]') do
           expect(page).to have_content '0'

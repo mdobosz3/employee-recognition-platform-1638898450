@@ -19,6 +19,9 @@ module Admin
     def update
       if order.delivered?
         redirect_to admin_orders_path, notice: 'Order was already delivered'
+      elsif order.address.street == 'pick-up'
+        order.update(status: :delivered)
+        redirect_to admin_orders_path, notice: 'Order was successfully delivered.'
       elsif order.update(status: :delivered)
         OrderDeliveryMailer.with(order: order).delivery_by_post_email.deliver_now
         redirect_to admin_orders_path, notice: 'Order was successfully delivered.'
