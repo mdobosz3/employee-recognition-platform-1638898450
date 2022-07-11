@@ -14,19 +14,20 @@
   <%= form.hidden_field :reward_id, value: @reward.id %>
 
   <% if @reward.delivery_method == 'post'%>
+    <% address = Order.where(employee: current_employee).joins(:reward).where(rewards: {delivery_method: 'post'}).joins(:address).where.not(address: {street: 'pick-up'}).last&.address%>
     <h5>Add a address:</h5>
     <%= form.fields_for :address do |p| %>
       <div class="field form-group">
         <%= p.label :street %><br>
-        <%= p.text_field :street, class:"form-control" %>
+        <%= p.text_field :street, value: address&.street, class:"form-control" %>
       </div>
       <div class="field form-group">
         <%= p.label :postcode %><br>
-        <%= p.text_field :postcode, class:"form-control" %>
+        <%= p.text_field :postcode, value: address&.postcode, class:"form-control" %>
       </div>
       <div class="field form-group">
         <%= p.label :city %><br>
-        <%= p.text_field :city, class:"form-control" %>
+        <%= p.text_field :city, value: address&.city, class:"form-control" %>
       </div>
     <% end %>
     <br>
@@ -35,8 +36,8 @@
       <%= form.submit "Delivery by post", class:"bi bi-mailbox btn btn-outline-success btn-sm"%>
       <%= link_to ' Pick-up in office', orders_path(order: {reward_id: @reward, address_attributes: {street: "pick-up", postcode: "pick-up", city:"pick-up"}}), method: :post, class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
     </div>
-    <% else %>
-      <%= link_to 'Back', rewards_path, class:'btn btn-secondary btn-sm' %>
-      <%= link_to ' Delivery online', orders_path(reward: @reward), method: :post, class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
+  <% else %>
+    <%= link_to 'Back', rewards_path, class:'btn btn-secondary btn-sm' %>
+    <%= link_to ' Delivery online', orders_path(reward: @reward), method: :post, class:"bi bi-bag-plus btn btn-outline-success btn-sm" %>
   <% end %>
 <% end %>
